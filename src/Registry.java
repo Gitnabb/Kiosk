@@ -1,7 +1,20 @@
+/**
+ *
+ *
+ *
+ */
+
+
 import java.util.ArrayList;
 
 public class Registry {
 
-    ArrayList<Book> bookList = new ArrayList<>();
+    private ArrayList<Book> bookList;
+
+    public Registry(){
+
+        this.bookList = new ArrayList<>();
+
+    }
 
 }
