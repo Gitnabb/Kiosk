@@ -8,6 +8,7 @@
 import java.util.ArrayList;
 
 
+
 public class Registry {
 
     private ArrayList<Book> bookList;
@@ -26,10 +27,9 @@ public class Registry {
     public void showBooks(){
 
         for(int i = 0; i < bookList.size(); i++){
-
-            System.out.println(bookList.get(i).toString());
-
-        }
+                // TODO create PROPER error handler for exception if Book = null (empty array)
+                System.out.println(bookList.get(i).toString());
+            }
 
     }
 

@@ -58,6 +58,7 @@ public class Book{
     @Override
     public String toString() {
         return ("Title: "+this.getTitle()+ ", " +
-                " Author: "+ this.getAuthor() + ", " + "Edition: " + getEdition() +", " + "Published in: " + getPublished());
+                " Author: "+ this.getAuthor() + ", " + "Edition: "
+                + getEdition() +", " + "Published in: " + getPublished());
     }
 }
