@@ -7,6 +7,7 @@
 
 import java.util.ArrayList;
 
+
 public class Registry {
 
     private ArrayList<Book> bookList;
@@ -31,7 +32,5 @@ public class Registry {
         }
 
     }
-
-
 
 }
