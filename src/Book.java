@@ -12,14 +12,15 @@ public class Book{
 
     private String title;
     private String author;
-    private String published;
-    private int totalEditions;
+    private int published;
+    private int edition;
 
 
-    public Book(String author, String published, int totalEditions){
+    public Book(String title, String author, int published, int edition){
+        this.title = title;
         this.author = author;
         this.published = published;
-        this.totalEditions = totalEditions;
+        this.edition = edition;
     }
 
     public String getTitle() {
@@ -38,19 +39,25 @@ public class Book{
         this.author = author;
     }
 
-    public String getPublished() {
+    public int getPublished() {
         return published;
     }
 
-    public void setPublished(String published) {
+    public void setPublished(int published) {
         this.published = published;
     }
 
-    public int getTotalEditions() {
-        return totalEditions;
+    public int getEdition() {
+        return edition;
     }
 
-    public void setTotalEditions(int totalEditions) {
-        this.totalEditions = totalEditions;
+    public void setEdition(int edition) {
+        this.edition = edition;
+    }
+
+    @Override
+    public String toString() {
+        return ("Title: "+this.getTitle()+ ", " +
+                " Author: "+ this.getAuthor() + ", " + "Edition: " + getEdition() +", " + "Published in: " + getPublished());
     }
 }
