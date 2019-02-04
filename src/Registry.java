@@ -1,42 +1,55 @@
 /**
  *
- *
- *
  */
 
 
 import java.util.ArrayList;
-
+import java.util.Iterator;
 
 
 public class Registry {
 
     private ArrayList<Book> bookList;
 
-    public Registry(){
+    public Registry() {
 
         this.bookList = new ArrayList<>();
 
     }
 
-    public void addBook(Book book){
+    public void addBook(Book book) {
 
         bookList.add(book);
     }
 
-    public void showBooks(){
+    public void showBooks() {
 
-        for(int i = 0; i < bookList.size(); i++){
-                // TODO create PROPER error handler for exception if Book = null (empty array) maybe
-                System.out.println(bookList.get(i).toString());
-            }
+        for (int i = 0; i < bookList.size(); i++) {
+
+            System.out.println(bookList.get(i).toString());
+        }
 
     }
 
-    public void removeBook(Book book){
+    public void removeBook(Book book) {
 
         bookList.remove(book);
 
     }
 
+    public Book findBookByTitle(String title) {
+        Book foundBook = null;
+        boolean found = false;
+        Iterator<Book> it = this.bookList.iterator();
+
+        while (it.hasNext() && !found) {
+
+            Book book = it.next();
+            if (book.getTitle().toLowerCase().equals(title.toLowerCase())) {
+                foundBook = book;
+                found = true;
+            }
+        }
+        return foundBook;
+    }
 }
