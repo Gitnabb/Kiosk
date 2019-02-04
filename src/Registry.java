@@ -33,6 +33,10 @@ public class Registry {
 
     }
 
+    public void removeBook(Book book){
 
+        bookList.remove(book);
+
+    }
 
 }
