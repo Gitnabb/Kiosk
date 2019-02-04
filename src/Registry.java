@@ -27,10 +27,12 @@ public class Registry {
     public void showBooks(){
 
         for(int i = 0; i < bookList.size(); i++){
-                // TODO create PROPER error handler for exception if Book = null (empty array)
+                // TODO create PROPER error handler for exception if Book = null (empty array) maybe
                 System.out.println(bookList.get(i).toString());
             }
 
     }
+
+
 
 }
