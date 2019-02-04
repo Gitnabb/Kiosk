@@ -52,4 +52,20 @@ public class Registry {
         }
         return foundBook;
     }
+
+    public Book findBookByAuthor(String author) {
+        Book foundBook = null;
+        boolean found = false;
+        Iterator<Book> it = this.bookList.iterator();
+
+        while (it.hasNext() && !found) {
+
+            Book book = it.next();
+            if (book.getAuthor().toLowerCase().equals(author.toLowerCase())) {
+                foundBook = book;
+                found = true;
+            }
+        }
+        return foundBook;
+    }
 }
