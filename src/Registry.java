@@ -1,7 +1,8 @@
 /**
  *
  * Registry class holds the book registry, and provide functionality of retrieving and adding books
- * to the book registry. Registry also provides the search function.
+ * to the book registry. Registry also provides a search function to search the book registry and retreive books based on
+ * title and author.
  *
  */
 
@@ -23,6 +24,7 @@ public class Registry {
 
     /**
      * Add book to the registry
+     *
      * @param book
      */
     public void addBook(Book book) {
@@ -46,10 +48,9 @@ public class Registry {
     }
 
     /**
-     *
      * Search registry by title
-     * @param title
      *
+     * @param title
      */
 
     public Book findBookByTitle(String title) {
@@ -69,10 +70,9 @@ public class Registry {
     }
 
     /**
-     *
      * Search registry by author
-     * @param author
      *
+     * @param author
      */
     public Book findBookByAuthor(String author) {
         Book foundBook = null;
@@ -88,5 +88,29 @@ public class Registry {
             }
         }
         return foundBook;
+    }
+
+    /**
+     *
+     */
+    public Book findBookByPublished(int published) {
+        Book foundBook = null;
+        boolean found = false;
+        Iterator<Book> it = this.bookList.iterator();
+
+        while (it.hasNext() && !found) {
+
+            Book book = it.next();
+            if (book.getPublished() == published) {
+                foundBook = book;
+                found = true;
+            }
+        }
+        return foundBook;
+
+    }
+
+    public Iterator<Book> getIterator(){
+        return this.bookList.iterator();
     }
 }

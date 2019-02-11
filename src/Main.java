@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -26,6 +27,7 @@ public class Main {
         String title = in.nextLine();
         Book bookByTitle = registry.findBookByTitle(title);
 
+
         if(bookByTitle != null ){
 
             System.out.println("Book found in registry -> " + bookByTitle.toString());
@@ -49,6 +51,30 @@ public class Main {
             System.out.println("Could not find book");
         }
 
-    }
+        // SEARCH BY PUBLISHED YEAR
+        boolean searchDone = false;
+        int year;
+        while(!searchDone){
 
+            try {
+                System.out.println("Search for a book by published year");
+                year = Integer.parseInt(in.nextLine());
+                Book bookByYear = registry.findBookByPublished(year);
+
+                if(bookByYear != null){
+
+                    System.out.println("Book found in registry -> " + bookByYear.toString());
+                    searchDone = true;
+                }
+                else{
+                    System.out.println("Could not find book");
+                }
+            }
+            catch (NumberFormatException exception){
+
+                System.out.println("Wrong search term");
+
+            }
+        }
+    }
 }
