@@ -20,6 +20,13 @@ public class Registry {
         // Instanciate ArrayList.
         this.bookList = new ArrayList<>();
 
+        Book testBook = new Book("Peer Gynt", "H.Ibsen", 1990, 5);
+        Book testBook2 = new Book("How to train arms", "M. Kvendseth", 2035, 7);
+        Book testBookToBeRemoved = new Book("Gtfo", "Fgt ass", 2019, 1);
+        addBook(testBook);
+        addBook(testBook2);
+        addBook(testBookToBeRemoved);
+
     }
 
     /**
@@ -108,7 +115,6 @@ public class Registry {
             }
         }
         return foundBook;
-
     }
 
     /**
