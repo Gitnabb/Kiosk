@@ -20,7 +20,8 @@ public class ApplicationUI  {
                 switch (menuSelection){
 
                     case 1:
-                        // Add book
+                        // Launch Add book menu
+                        addBookMenu();
                         break;
 
                     case 2:
@@ -93,9 +94,7 @@ public class ApplicationUI  {
 
 
         if(bookByTitle != null ){
-
             System.out.println("Book found in registry -> " + bookByTitle.toString());
-
         }
         else{
             System.out.println("Could not find book");
@@ -156,5 +155,24 @@ public class ApplicationUI  {
 
     public void doRemoveBook(Book book){
         registry.removeBook(book);
+    }
+
+    public void addBookMenu(){
+
+        String bookTitle = in.nextLine();
+        System.out.println("To add a book, start with entering a title: ");
+
+        System.out.println("Who wrote the book? ");
+        String bookAuthor = in.nextLine();
+
+        System.out.println("When did it get published? (Year)");
+        int bookYearPublished = in.nextInt();
+
+        System.out.println("Edition?");
+        int bookEdition = in.nextInt();
+
+        Book book = new Book(bookTitle, bookAuthor, bookYearPublished, bookEdition);
+        registry.addBook(book);
+        System.out.println(book.getTitle() + " has been added!");
     }
 }
