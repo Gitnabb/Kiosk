@@ -13,7 +13,7 @@ import java.util.Iterator;
 
 public class Registry {
 
-    //Declare ArrayList
+    // Declare ArrayList
     private ArrayList<Book> bookList;
 
     public Registry() {
@@ -32,19 +32,24 @@ public class Registry {
         bookList.add(book);
     }
 
+    /**
+     * Remove a book from the registry
+     * @param book
+     */
+    public void removeBook(Book book) {
+
+        bookList.remove(book);
+    }
+
+    /**
+     * Show all books in the registry
+     */
     public void showBooks() {
 
         for (int i = 0; i < bookList.size(); i++) {
 
             System.out.println(bookList.get(i).toString());
         }
-
-    }
-
-    public void removeBook(Book book) {
-
-        bookList.remove(book);
-
     }
 
     /**
@@ -54,6 +59,7 @@ public class Registry {
      */
 
     public Book findBookByTitle(String title) {
+        title = title.toLowerCase().trim(); // Trim whitespaces in search term.
         Book foundBook = null;
         boolean found = false;
         Iterator<Book> it = this.bookList.iterator();
@@ -75,6 +81,7 @@ public class Registry {
      * @param author
      */
     public Book findBookByAuthor(String author) {
+        author = author.toLowerCase().trim();
         Book foundBook = null;
         boolean found = false;
         Iterator<Book> it = this.bookList.iterator();
@@ -91,7 +98,7 @@ public class Registry {
     }
 
     /**
-     *
+     * Find a book by the publish year
      */
     public Book findBookByPublished(int published) {
         Book foundBook = null;
@@ -110,6 +117,10 @@ public class Registry {
 
     }
 
+    /**
+     * Get iterator from registry
+     * @return Iterator
+     */
     public Iterator<Book> getIterator(){
         return this.bookList.iterator();
     }

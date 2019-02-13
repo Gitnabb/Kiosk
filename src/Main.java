@@ -1,9 +1,10 @@
-import java.util.InputMismatchException;
+// Import necessary libraries
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String args[]){
+
         Registry registry = new Registry();
         Scanner in = new Scanner(System.in);
         Book testBook = new Book("Peer Gynt", "H.Ibsen", 1990, 5);
@@ -44,7 +45,7 @@ public class Main {
 
         if(bookByAuthor != null ){
 
-            System.out.println("Author found in registry -> " + bookByTitle.toString());
+            System.out.println("Author found in registry -> " + bookByAuthor.toString());
 
         }
         else{
