@@ -61,15 +61,13 @@ public class Registry {
     public Book findBookByTitle(String title) {
         title = title.toLowerCase().trim(); // Trim whitespaces in search term.
         Book foundBook = null;
-        boolean found = false;
         Iterator<Book> it = this.bookList.iterator();
 
-        while (it.hasNext() && !found) {
+        while (it.hasNext() && foundBook == null) {
 
             Book book = it.next();
-            if (book.getTitle().toLowerCase().equals(title.toLowerCase())) {
+            if (book.getTitle().toLowerCase().equals(title)) {
                 foundBook = book;
-                found = true;
             }
         }
         return foundBook;
@@ -83,15 +81,13 @@ public class Registry {
     public Book findBookByAuthor(String author) {
         author = author.toLowerCase().trim();
         Book foundBook = null;
-        boolean found = false;
         Iterator<Book> it = this.bookList.iterator();
 
-        while (it.hasNext() && !found) {
+        while (it.hasNext() && foundBook == null) {
 
             Book book = it.next();
-            if (book.getAuthor().toLowerCase().equals(author.toLowerCase())) {
+            if (book.getAuthor().toLowerCase().equals(author)) {
                 foundBook = book;
-                found = true;
             }
         }
         return foundBook;
@@ -102,15 +98,13 @@ public class Registry {
      */
     public Book findBookByPublished(int published) {
         Book foundBook = null;
-        boolean found = false;
         Iterator<Book> it = this.bookList.iterator();
 
-        while (it.hasNext() && !found) {
+        while (it.hasNext() && foundBook == null) {
 
             Book book = it.next();
             if (book.getPublished() == published) {
                 foundBook = book;
-                found = true;
             }
         }
         return foundBook;
