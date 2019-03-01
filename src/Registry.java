@@ -22,9 +22,11 @@ public class Registry {
 
         Book testBook = new Book("Peer Gynt", "H.Ibsen", 1990, 5);
         Book testBook2 = new Book("How to train arms", "M. Kvendseth", 2035, 7);
+        Book toneBook = new Book("How to be the greatest person alive ever", "T. Krogstad", 2019, 1);
         Book testBookToBeRemoved = new Book("Gtfo", "Fgt ass", 2019, 1);
         addBook(testBook);
         addBook(testBook2);
+        addBook(toneBook);
         addBook(testBookToBeRemoved);
 
     }
