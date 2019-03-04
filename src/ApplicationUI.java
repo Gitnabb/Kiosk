@@ -167,19 +167,25 @@ public class ApplicationUI {
     }
 
     public void addBookMenu() {
-
+        // TODO: fikse ditta
         System.out.println("To add a book, start with entering a title: ");
         in.nextLine();
         String bookTitle = in.nextLine(); // hmmmmm wtf
-
         boolean titleAdded = false;
         while (!titleAdded) {
             if (bookTitle != null) {
-                System.out.println("Title added");
-                titleAdded = true;
+                if(!(registry.titleExist(bookTitle))){
+                    System.out.println("Title added");
+                    titleAdded = true;
+                }
+                else{
+                    System.out.println("Book exists, try another one");
+                    titleAdded = false;
+                }
             } else {
                 System.out.println("Are you sure? Try again..");
             }
+
         }
 
         System.out.println("Who wrote the book? ");
@@ -187,9 +193,11 @@ public class ApplicationUI {
 
         System.out.println("When did it get published? (Year)");
         int bookYearPublished = in.nextInt();
+        // CHECK FOR INT + "Thats not a year, try again"
 
         System.out.println("Edition?");
         int bookEdition = in.nextInt();
+        // CHECK FOR INT + "Thats not a year, try again"
 
         Book book = new Book(bookTitle, bookAuthor, bookYearPublished, bookEdition);
         registry.addBook(book);

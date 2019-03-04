@@ -126,4 +126,19 @@ public class Registry {
     public Iterator<Book> getIterator(){
         return this.bookList.iterator();
     }
+
+    public Boolean titleExist(String title){
+
+        Boolean exist = false;
+
+        if(findBookByTitle(title) != null){
+
+            exist = true;
+        }
+        else{
+            exist = false;
+        }
+        return exist;
+    }
+
 }
