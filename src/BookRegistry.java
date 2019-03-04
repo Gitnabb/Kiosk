@@ -86,4 +86,8 @@ public class BookRegistry {
         return this.bookList.size();
     }
 
+    public void displayBook() {
+
+    }
+
 }

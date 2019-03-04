@@ -126,10 +126,7 @@ public class ApplicationUI {
         Iterator<Book> bookIter = this.bookReg.getIterator();
         while(bookIter.hasNext()) {
             Book book = bookIter.next();
-            System.out.println("Title: " + book.getTitle()
-                    + "  Author: " + book.getAuthor()
-                    + "  Published: " + book.getPublished()
-                    + "  Edition:  " + book.getEditionNumber());
+            displayBook(book);
         }
 
     }
@@ -186,17 +183,18 @@ public class ApplicationUI {
         Book newBook = this.bookReg.searchForBookTitle(searchTitle);
 
         if (newBook == null) {
-            System.out.println("We didn't find a book called " + searchTitle);
+            System.out.println("We didn't find the book called " + searchTitle);
         }
         else {
-            System.out.println("We found: " + newBook.getTitle());
+            // create a " displayBook " - method, use this here and in listALlBooks
+            System.out.println("We found the following book for you: " + displayBook(newBook));
         }
     }
 
     /**
      * removes a book from the registry by the name of the book
      * reads the following input, and checks if it exist
-     * if so, I will become clear that it get's removed from the registry
+     * if so, it will become clear that it get's removed from the registry
      */
     private void removeBookByTitle() {
         Scanner reader = new Scanner(System.in);
@@ -211,5 +209,18 @@ public class ApplicationUI {
             System.out.println(findBook.getTitle() + " was removed from the book registry.");
         }
 
+    }
+
+    /**
+     * displays the all the vital information about the book given by the param
+     * @param book uses any book to return info given about it
+     * @return returns the display info about the book
+     */
+    private String displayBook(Book book) {
+        String printBook = "Title: " + book.getTitle()
+                + "  Author: " + book.getAuthor()
+                + "  Published: " + book.getPublished()
+                + "  Edition:  " + book.getEditionNumber();
+        return printBook;
     }
 }
