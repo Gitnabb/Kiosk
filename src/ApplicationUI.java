@@ -88,10 +88,9 @@ public class ApplicationUI {
      * @throws InputMismatchException if user enters an invalid number/menu choice
      */
     private int showMenu() throws InputMismatchException {
-        System.out.println("\n**** Application v0.1 ****\n");
+        System.out.println("\n**** Kiosk application v0.1 ****\n");
         // Display the menu
-        for ( String menuItem : menuItems )
-        {
+        for ( String menuItem : menuItems ) {
             System.out.println(menuItem);
         }
         int maxMenuItemNumber = menuItems.length + 1;
@@ -101,8 +100,7 @@ public class ApplicationUI {
         // Read input from user
         Scanner reader = new Scanner(System.in);
         int menuSelection = reader.nextInt();
-        if ((menuSelection < 1) || (menuSelection > maxMenuItemNumber))
-        {
+        if ((menuSelection < 1) || (menuSelection > maxMenuItemNumber)) {
             throw new InputMismatchException();
         }
         return menuSelection;
@@ -128,7 +126,9 @@ public class ApplicationUI {
             Book book = bookIter.next();
             displayBook(book);
         }
-
+        if(bookReg.getNumberOfBooks() <= 0) {
+            System.out.println("There are no books in the registry.");
+        }
     }
 
 
@@ -217,10 +217,9 @@ public class ApplicationUI {
      * @return returns the display info about the book
      */
     private String displayBook(Book book) {
-        String printBook = "Title: " + book.getTitle()
+        return "Title: " + book.getTitle()
                 + "  Author: " + book.getAuthor()
                 + "  Published: " + book.getPublished()
                 + "  Edition:  " + book.getEditionNumber();
-        return printBook;
     }
 }

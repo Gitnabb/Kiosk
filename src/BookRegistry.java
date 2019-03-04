@@ -85,9 +85,4 @@ public class BookRegistry {
     public int getNumberOfBooks() {
         return this.bookList.size();
     }
-
-    public void displayBook() {
-
-    }
-
 }
