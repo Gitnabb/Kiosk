@@ -50,8 +50,8 @@ public class ApplicationUI {
                         break;
 
                     case EXIT:
-                        System.out.println("Closing program..\nThank you for using the " + SOFTWARE_NAME + " " + VERSION +" !");
-                            quit = true;
+                        System.out.println("Closing program..\nThank you for using the " + SOFTWARE_NAME + " " + VERSION + " !");
+                        quit = true;
 
                 }
             } catch (InputMismatchException ime) {
@@ -173,19 +173,17 @@ public class ApplicationUI {
         String bookTitle = in.nextLine(); // hmmmmm wtf
         boolean titleAdded = false;
         while (!titleAdded) {
-            if (bookTitle != null) {
-                if(!(registry.titleExist(bookTitle))){
+            if (bookTitle.length() > 0) {
+                if (!(registry.titleExist(bookTitle))) {
                     System.out.println("Title added");
                     titleAdded = true;
-                }
-                else{
-                    System.out.println("Book exists, try another one");
-                    titleAdded = false;
+                } else {
+                    System.out.println("Book exists, try another title");
                 }
             } else {
                 System.out.println("Are you sure? Try again..");
             }
-
+            in.nextLine();
         }
 
         System.out.println("Who wrote the book? ");
