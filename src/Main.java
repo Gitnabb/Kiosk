@@ -1,11 +1,11 @@
+
 public class Main {
 
-    public static void main(String args[]){
-        Registry registry = new Registry();
-        Book testBook = new Book("Per Gynt", "H.Ibsen", 1990, 5);
+    public static void main(String args[]) {
 
-        registry.addBook(testBook);
-        registry.showBooks();
+
+        ApplicationUI appUI = new ApplicationUI();
+        appUI.start();
 
     }
 
