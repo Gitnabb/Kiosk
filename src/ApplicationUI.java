@@ -167,6 +167,13 @@ public class ApplicationUI {
     }
 
     public void addBookMenu() {
+
+       /* try {
+
+        } catch (InputMismatchException ime){
+
+        }*/
+
         // TODO: fikse ditta
         System.out.println("To add a book, start with entering a title: ");
         in.nextLine();
@@ -183,7 +190,7 @@ public class ApplicationUI {
             } else {
                 System.out.println("Are you sure? Try again..");
             }
-            in.nextLine();
+            bookTitle = in.nextLine();
         }
 
         System.out.println("Who wrote the book? ");

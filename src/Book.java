@@ -6,7 +6,7 @@
 *
 */
 
-public class Book{
+public class Book {
 
     // Necessary fields defined
     private String title; // Title of a book
@@ -106,10 +106,12 @@ public class Book{
      * @Override Skip existing toString method.
      * @return String
      */
-    @Override
-    public String toString() {
-        return ("Title: "+this.getTitle()+ ", " +
-                " Author: "+ this.getAuthor() + ", " + "Published in: "
-                + getPublished() +", " + "Edition: " + getEdition());
+
+    private String displayBook(Book book){
+
+      return "Title: " + book.getTitle()
+              + ", Author: " + book.getAuthor()
+              + ", Published: " + book.getPublished()
+              + ", Edition: " + book.getEdition();
     }
 }
