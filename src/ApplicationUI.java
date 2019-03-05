@@ -31,6 +31,7 @@ public class ApplicationUI {
      */
     public ApplicationUI() {
         this.bookReg = new BookRegistry();
+
     }
 
     /**
@@ -121,14 +122,15 @@ public class ApplicationUI {
      * Lists all the products/literature in the register
      */
     private void listAllBooks() {
+        if(bookReg.getNumberOfBooks() < 1) {
+            System.out.println("There are no books in the registry.");
+        }
         Iterator<Book> bookIter = this.bookReg.getIterator();
         while(bookIter.hasNext()) {
             Book book = bookIter.next();
-            displayBook(book);
+            System.out.println(displayBook(book));
         }
-        if(bookReg.getNumberOfBooks() <= 0) {
-            System.out.println("There are no books in the registry.");
-        }
+
     }
 
 
@@ -176,7 +178,7 @@ public class ApplicationUI {
      * to print the details of the found item.
      */
     private void findBookByTitle() {
-        System.out.println("Search for book by title");
+        System.out.println("Search for a book by title");
         Scanner reader = new Scanner(System.in);
 
         String searchTitle = reader.nextLine();
@@ -200,13 +202,15 @@ public class ApplicationUI {
         Scanner reader = new Scanner(System.in);
         System.out.println("Type the name of the book you want to remove.");
         String searchTitle = reader.nextLine();
+        //searches for an exact book by the name of the searchTitle
         Book findBook = this.bookReg.searchForBookTitle(searchTitle);
+        //if it doesnt exist, we make sure to tell the user
         if(findBook == null) {
             System.out.println("We didn't find a book called " + searchTitle);
         }
         else {
             bookReg.deleteBook(findBook);
-            System.out.println(findBook.getTitle() + " was removed from the book registry.");
+            System.out.println("the book " + findBook.getTitle() + " was removed from the book registry.");
         }
 
     }
@@ -217,9 +221,10 @@ public class ApplicationUI {
      * @return returns the display info about the book
      */
     private String displayBook(Book book) {
-        return "Title: " + book.getTitle()
+        String display = "Title: " + book.getTitle()
                 + "  Author: " + book.getAuthor()
                 + "  Published: " + book.getPublished()
                 + "  Edition:  " + book.getEditionNumber();
+        return display;
     }
 }
