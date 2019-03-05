@@ -47,7 +47,11 @@ public class Registry {
      */
     public void removeBook(Book book) {
 
-        bookList.remove(book);
+        if(book != null){
+
+            bookList.remove(book);
+        }
+
     }
 
     /**

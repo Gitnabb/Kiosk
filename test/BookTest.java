@@ -1,8 +1,7 @@
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class BookTest {
 
@@ -11,7 +10,7 @@ public class BookTest {
     @Before
     public void setUp() throws Exception {
 
-       testBook = new Book("testTitle", "testAuthor", 2019, 1);
+        testBook = new Book("testTitle", "testAuthor", 2019, 1);
 
     }
 
@@ -26,6 +25,7 @@ public class BookTest {
 
     @Test
     public void getAuthor() {
+        assertEquals("testAuthor", testBook.getAuthor());
     }
 
     @Test
@@ -34,6 +34,7 @@ public class BookTest {
 
     @Test
     public void getPublished() {
+        assertEquals(2019, testBook.getPublished());
     }
 
     @Test
@@ -42,6 +43,7 @@ public class BookTest {
 
     @Test
     public void getEdition() {
+        assertEquals(1, testBook.getEdition());
     }
 
     @Test
