@@ -1,12 +1,11 @@
 /**
- *
  * Registry class holds the book registry, and provide functionality of retrieving and adding books
  * to the book registry. Registry also provides a search function to search the book registry and retreive books based on
  * title and author.
- *
  */
 
 // Import necessary libraries.
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -16,18 +15,26 @@ public class Registry {
     // Declare ArrayList
     private ArrayList<Book> bookList;
 
+    // Declare book objects
+    private Book testBook;
+    private Book testBook2;
+
     public Registry() {
         // Instanciate ArrayList.
         this.bookList = new ArrayList<>();
 
-        Book testBook = new Book("Peer Gynt", "H.Ibsen", 1990, 5);
-        Book testBook2 = new Book("How to train arms", "M. Kvendseth", 2035, 7);
-        Book toneBook = new Book("How to be the greatest person alive ever", "T. Krogstad", 2019, 1);
-        Book testBookToBeRemoved = new Book("Gtfo", "Fgt ass", 2019, 1);
+        testBook = new Book("Peer Gynt", "H.Ibsen", 1990, 5);
+        testBook2 = new Book("How to train arms", "M. Kvendseth", 2035, 7);
+
+        setup();
+
+    }
+
+    // FILL KIOSK WITH BOOKS
+    public void setup() {
+
         addBook(testBook);
         addBook(testBook2);
-        addBook(toneBook);
-        addBook(testBookToBeRemoved);
 
     }
 
@@ -47,7 +54,7 @@ public class Registry {
      */
     public void removeBook(Book book) {
 
-        if(book != null){
+        if (book != null) {
 
             bookList.remove(book);
         }
@@ -61,7 +68,7 @@ public class Registry {
 
         for (int i = 0; i < bookList.size(); i++) {
 
-            System.out.println(bookList.get(i).toString());
+            System.out.println("- " + bookList.get(i).getTitle());
         }
     }
 
@@ -127,19 +134,18 @@ public class Registry {
      * Get iterator from registry
      * @return Iterator
      */
-    public Iterator<Book> getIterator(){
+    public Iterator<Book> getIterator() {
         return this.bookList.iterator();
     }
 
-    public Boolean titleExist(String title){
+    public Boolean titleExist(String title) {
 
         Boolean exist = false;
 
-        if(findBookByTitle(title) != null){
+        if (findBookByTitle(title) != null) {
 
             exist = true;
-        }
-        else{
+        } else {
             exist = false;
         }
         return exist;

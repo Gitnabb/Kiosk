@@ -2,9 +2,16 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ApplicationUI {
-
+    // DECLARE SOFTWARE SPECIFIC CONSTANTS
     private final String SOFTWARE_NAME = "Kjetil and Andreas' Book Kiosk";
     private final String VERSION = "v1.0";
+
+    // DECLARE MAIN MENU CHOICES
+    private final static int ADD_BOOK_TO_REGISTRY = 1;
+    private final static int REMOVE_BOOK_FROM_REGISTRY = 2;
+    private final static int SEARCH_FOR_BOOK = 3;
+    private final static int SHOW_ALL_BOOKS = 4;
+    private final static int EXIT = 5;
 
     private Scanner in = new Scanner(System.in);
     private Registry registry = new Registry();
@@ -13,12 +20,10 @@ public class ApplicationUI {
 
     }
 
-    private final static int ADD_BOOK_TO_REGISTRY = 1;
-    private final static int REMOVE_BOOK_FROM_REGISTRY = 2;
-    private final static int SEARCH_FOR_BOOK = 3;
-    private final static int SHOW_ALL_BOOKS = 4;
-    private final static int EXIT = 5;
-
+    /**
+     * Start the application, show menu options. If the user chooses to quit, the application stops
+     * and prints a "good bye" - message.
+     */
     public void start() {
 
         boolean quit = false;
@@ -56,6 +61,12 @@ public class ApplicationUI {
         }
     }
 
+    /**
+     * Prints out the array of available menu options stored in menuItems.
+     *
+     * @param menu
+     * @return
+     */
     private int showMenu(String menu[]) {
 
         int menuChosen;
@@ -72,6 +83,9 @@ public class ApplicationUI {
 
     }
 
+    /**
+     * Names of the available menu choices
+     */
     private final String[] menuItems = {
 
             "1: Add book",
@@ -81,19 +95,19 @@ public class ApplicationUI {
             "5: Exit program"
     };
 
-    private boolean wantsToQuit() {
-
-        // Ask user if he wants to quit
-        // Ask until user writes either Y or N - or equivalent
-        return false;
-    }
-
+    /**
+     * Print a welcome message to the user
+     */
     public void welcomeMsg() {
 
         System.out.println("***** Welcome to " + SOFTWARE_NAME + " " + VERSION + "!" + " *****" + "\n");
     }
 
 
+    /**
+     * Search for a book by it's title. Takes input from user, validates it and
+     * sends that through to the search function in the registry.
+     */
     public void doSearchByTitle() {
 
         // SEARCH BY TITLE
@@ -110,6 +124,11 @@ public class ApplicationUI {
         }
     }
 
+    /**
+     * Search for a book by the author. Takes input from user, validates it and
+     * sends that through to the search function in the registry.
+     * TODO: Maybe use this later.
+     */
     public void doSearchByAuthor() {
 
         System.out.println("Search for book by author: ");
@@ -126,12 +145,16 @@ public class ApplicationUI {
 
     }
 
+    /**
+     * Remove a book from the registry
+     */
+
     public void doRemoveBookByTitle() {
 
-        // WHY CAN'T I USE MAIN SCANNER?
-        Scanner input = new Scanner(System.in);
+        // TODO: FIGURE OUT WHY I CAN'T USE MAIN SCANNER..
+        Scanner removeInput = new Scanner(System.in);
         System.out.println("Please enter the title of the book you want removed: ");
-        String searchString = input.nextLine();
+        String searchString = removeInput.nextLine();
         Book bookToBeFound = this.registry.findBookByTitle(searchString);
 
         if (bookToBeFound == null) {
@@ -140,11 +163,11 @@ public class ApplicationUI {
 
         } else {
             System.out.println("Are you sure you want to remove " + bookToBeFound.getTitle() + " - Y/N ?");
-            String answer = input.nextLine();
-            if(answer.equals("Y")){
+            String answer = removeInput.nextLine();
+            if (answer.equals("Y")) {
                 registry.removeBook(bookToBeFound);
                 System.out.println(bookToBeFound.getTitle() + " has been removed from the registry! ");
-            } else if(answer.equals("N")){
+            } else if (answer.equals("N")) {
                 System.out.println("Book was not removed");
             } else {
                 System.out.println("Could not understand you, aborting book removal.");
@@ -153,6 +176,9 @@ public class ApplicationUI {
 
     }
 
+    /**
+     * Search for books (sort) by  published year.
+     */
     public void doSearchByPublishedYear() {
         boolean searchDone = false;
         int year;
@@ -178,6 +204,10 @@ public class ApplicationUI {
         }
     }
 
+    /**
+     * Show all the books in the registry.
+     */
+
     public void doShowAllBooks() {
 
         System.out.println("Current books in registry");
@@ -186,15 +216,18 @@ public class ApplicationUI {
 
     }
 
-    public void doRemoveBook(Book book) {
-        registry.removeBook(book);
-    }
+    /**
+     * Add a book to the registry.
+     * Takes input from user and validates them.
+     * Adds book with a title, an author, the year it was published and which edition it is.
+     * Once done the book is added to the registry.
+     */
 
     public void addBookMenu() {
         // TODO: USE VALIDATE METHOD INSTEAD ?
         System.out.println("To add a book, start with entering a title: ");
         in.nextLine();
-        String bookTitle = in.nextLine(); // hmmmmm wtf
+        String bookTitle = in.nextLine();
         boolean titleAdded = false;
         while (!titleAdded) {
             if (bookTitle.length() > 0) {

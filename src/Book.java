@@ -31,6 +31,10 @@ public class Book {
         this.edition = edition;
     }
 
+    public Book (){
+
+    }
+
     /**
      * Returns the title of the book when called.
      * @return the title of the book
