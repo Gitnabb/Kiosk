@@ -22,6 +22,7 @@ public class ApplicationUI {
             "2. Add a new book",
             "3. Find a book by name",
             "4. Remove a book by name",
+            //the last option ( 5 ) is automatically created when called upon.
     };
 
     private BookRegistry bookReg;
@@ -169,8 +170,8 @@ public class ApplicationUI {
     }
 
     /**
-     * Find and display a product based om name (title).
-     * As with the addNewProduct()-method, you have to
+     * Find and display a book based om name (title).
+     * As with the addNewBook()-method, you have to
      * ask the user for the string (/title/)
      * to search for, and then use this string as input-
      * parameter to the method in the register-object.

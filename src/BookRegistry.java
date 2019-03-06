@@ -38,15 +38,6 @@ public class BookRegistry {
         }
     }
 
-    /**
-     * sums up all the different books in the book-list
-     */
-    public void listAllBooks() {
-        for (Book books : bookList) {
-            System.out.println(books);
-        }
-    }
-
     public Iterator<Book> getIterator() {
         return this.bookList.iterator();
     }
