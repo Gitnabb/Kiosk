@@ -209,10 +209,13 @@ public class ApplicationUI {
      */
 
     public void doShowAllBooks() {
-
-        System.out.println("Current books in registry");
-        registry.showBooks();
-        System.out.println(" ");
+        if (registry.bookListSize() > 0) {
+            System.out.println("Current books in registry");
+            registry.showBooks();
+            System.out.println(" ");
+        } else {
+            System.out.println("There are no books in the registry!");
+        }
 
     }
 

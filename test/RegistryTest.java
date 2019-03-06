@@ -1,3 +1,4 @@
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -7,15 +8,20 @@ import static org.junit.Assert.*;
 
 public class RegistryTest {
 
+    private Registry testRegistry;
+    Book testBook;
+
+    @Before
+    public void setup(){
+
+        this.testRegistry = new Registry();
+        this.testBook = new Book("testBook", "testAuthor", 2019, 1);
+
+    }
+
     @Test
     public void addBook() {
-        Book book = new Book();
-
-        String input = "bookTitle";
-        InputStream in = new ByteArrayInputStream(input.getBytes());
-        System.setIn(in);
-
-        assertEquals("bookTitle", book.getTitle());
+        assertTrue(this.testRegistry.addBook(testBook));
     }
 
     @Test

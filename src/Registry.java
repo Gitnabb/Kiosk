@@ -12,26 +12,29 @@ import java.util.Iterator;
 
 public class Registry {
 
-    // Declare ArrayList
+    // DECLARE LIST
     private ArrayList<Book> bookList;
 
-    // Declare book objects
+    // DECLARE MANUAL TEST BOOK OBJECTS
     private Book testBook;
     private Book testBook2;
 
     public Registry() {
-        // Instanciate ArrayList.
+        // INSTANTIATE LIST
         this.bookList = new ArrayList<>();
 
+        // CONSTRUCT MANUAL TEST BOOK OBJECTS
         testBook = new Book("Peer Gynt", "H.Ibsen", 1990, 5);
         testBook2 = new Book("How to train arms", "M. Kvendseth", 2035, 7);
 
-        setup();
+        fillRegistry();
 
     }
 
-    // FILL KIOSK WITH BOOKS
-    public void setup() {
+    /**
+     * Fill kiosk with manually added test books.
+     */
+    public void fillRegistry() {
 
         addBook(testBook);
         addBook(testBook2);
@@ -43,13 +46,20 @@ public class Registry {
      *
      * @param book
      */
-    public void addBook(Book book) {
+    public boolean addBook(Book book) {
 
-        bookList.add(book);
+        boolean added = false;
+
+        if(book != null){
+            bookList.add(book);
+            added = true;
+        }
+        return added;
     }
 
     /**
-     * Remove a book from the registry
+     * Remove a book from the registry. If there are no books
+     *
      * @param book
      */
     public void removeBook(Book book) {
@@ -57,6 +67,7 @@ public class Registry {
         if (book != null) {
 
             bookList.remove(book);
+
         }
 
     }
@@ -132,6 +143,7 @@ public class Registry {
 
     /**
      * Get iterator from registry
+     *
      * @return Iterator
      */
     public Iterator<Book> getIterator() {
@@ -149,6 +161,12 @@ public class Registry {
             exist = false;
         }
         return exist;
+    }
+
+    public int bookListSize(){
+
+        return bookList.size();
+
     }
 
 }
