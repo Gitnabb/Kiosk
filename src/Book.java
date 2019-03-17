@@ -11,10 +11,10 @@
 
 public class Book {
 
-    private final String title; // title of the Book
-    private final String author; // author of the Book
-    private final int published; // the year the Book was published
-    private final int editionNumber; // the edition of the Book
+    private String title; // title of the Book
+    private String author; // author of the Book
+    private int published; // the year the Book was published
+    private int editionNumber; // the edition of the Book
 
     /**
      * initialize the different fields with given parameters
@@ -24,10 +24,10 @@ public class Book {
      * @param editionNumber the edition of the Book
      */
     public Book(String title, String author, int published, int editionNumber) {
-        this.title = title;
-        this.author = author;
-        this.published = published;
-        this.editionNumber = editionNumber;
+        setTitle(title);
+        setAuthor(author);
+        setPublished(published);
+        setEditionNumber(editionNumber);
     }
 
     /**
@@ -62,6 +62,51 @@ public class Book {
         return this.editionNumber;
     }
 
+    private void setTitle(String title) {
+        if(title == null){
+            this.title = "INVALID VALUE";
+        }
+        else{
+            if(title.length() == 0){
+                this.title = "INVALID VALUE";
+            }
+            else {
+                this.title = title;
+            }
+        }
+    }
+
+    private void setAuthor(String author) {
+        if(author ==  null){
+            this.author = "INVALID VALUE";
+        }
+        else{
+            if(author.length() == 0){
+                this.author = "INVALID VALUE";
+            }
+            else {
+                this.author = author;
+            }
+        }
+    }
+
+    private void setPublished(int published) {
+        if(published > 0){
+            this.published = published;
+        }
+        else{
+            this.published = 0;
+        }
+
+    }
+    private void setEditionNumber(int editionNumber) {
+        if(editionNumber >= 0){
+            this.editionNumber = editionNumber;
+        }
+        else{
+            this.editionNumber = 0;
+        }
+    }
 }
 
 

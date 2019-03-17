@@ -12,7 +12,6 @@ import java.util.Scanner;
  */
 public class ApplicationUI {
 
-
     /**
      * Gives a brief view of the menu
      * the available options to the user
@@ -123,13 +122,16 @@ public class ApplicationUI {
      * Lists all the products/literature in the register
      */
     private void listAllBooks() {
-        if(bookReg.getNumberOfBooks() < 1) {
+        System.out.println("\nList of all Books in the register:");
+        if(bookReg.getNumberOfBooks() == 0) {
             System.out.println("There are no books in the registry.");
         }
-        Iterator<Book> bookIter = this.bookReg.getIterator();
-        while(bookIter.hasNext()) {
-            Book book = bookIter.next();
-            System.out.println(displayBook(book));
+        else {
+            Iterator<Book> bookIter = this.bookReg.getIterator();
+            while (bookIter.hasNext()) {
+                Book book = bookIter.next();
+                System.out.println(displayBook(book));
+            }
         }
 
     }

@@ -15,6 +15,7 @@ public class BookRegistry {
     //defining fields
     private ArrayList<Book> bookList; // name of the Book-list
 
+
     /**
      * Constructs the list available to store the different books
      */
@@ -75,5 +76,8 @@ public class BookRegistry {
      */
     public int getNumberOfBooks() {
         return this.bookList.size();
+    }
+
+    public void testfaen() {
     }
 }
