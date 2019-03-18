@@ -39,7 +39,7 @@ public class Book {
      * Returns the title of the book when called.
      * @return the title of the book
      */
-    public String getTitle() {
+    private String getTitle() {
         return title;
     }
 
@@ -56,7 +56,7 @@ public class Book {
      * @return the author of the book
      */
 
-    public String getAuthor() {
+    private String getAuthor() {
         return author;
     }
 
@@ -73,7 +73,7 @@ public class Book {
      * @return the publish year of the book
      */
 
-    public int getPublished() {
+    private int getPublished() {
         return published;
     }
 
@@ -91,7 +91,7 @@ public class Book {
      * @return the edition of the book
      */
 
-    public int getEdition() {
+    private int getEdition() {
         return edition;
     }
 

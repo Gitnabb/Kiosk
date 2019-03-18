@@ -164,14 +164,14 @@ public class ApplicationUI {
         } else {
             System.out.println("Are you sure you want to remove " + bookToBeFound.getTitle() + " - Y/N ?");
             String answer = removeInput.nextLine();
-            if (answer.equals("Y")) {
+            if (answer.equals("Y") || answer.equals("y")) {
                 registry.removeBook(bookToBeFound);
                 System.out.println(bookToBeFound.getTitle() + " has been removed from the registry! ");
-            } else if (answer.equals("N")) {
+            } else if (answer.equals("N") || answer.equals("n")) {
                 System.out.println("Book was not removed");
             } else {
                 System.out.println("Could not understand you, aborting book removal.");
-            }
+            } // PACK THIS IN A WHILE TO HANDLE WRONG INPUT..MAYBE INTRODUCE A BACK / ABORT COMMAND?
         }
 
     }
@@ -278,4 +278,5 @@ public class ApplicationUI {
         registry.addBook(book);
         System.out.println(book.getTitle() + " has been added!");
     }
+
 }
