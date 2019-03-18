@@ -9,19 +9,19 @@ import static org.junit.Assert.*;
 public class RegistryTest {
 
     private Registry testRegistry;
-    Book testBook;
+    Literature testLiterature;
 
     @Before
     public void setup(){
 
         this.testRegistry = new Registry();
-        this.testBook = new Book("testBook", "testAuthor", 2019, 1);
+        this.testLiterature = new Literature("testBook", "testAuthor", 2019, 1);
 
     }
 
     @Test
-    public void addBook() {
-        assertTrue(this.testRegistry.addBook(testBook));
+    public void addLiterature() {
+        assertTrue(this.testRegistry.addLiterature(testLiterature));
     }
 
     @Test

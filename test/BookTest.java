@@ -5,18 +5,18 @@ import static org.junit.Assert.assertEquals;
 
 public class BookTest {
 
-    private Book testBook;
+    private Literature testLiterature;
 
     @Before
     public void setUp() throws Exception {
 
-        testBook = new Book("testTitle", "testAuthor", 2019, 1);
+        testLiterature = new Literature("testTitle", "testAuthor", 2019, 1);
 
     }
 
     @Test
     public void getTitle() {
-        assertEquals("testTitle", testBook.getTitle());
+        assertEquals("testTitle", testLiterature.getTitle());
     }
 
     @Test
@@ -25,7 +25,7 @@ public class BookTest {
 
     @Test
     public void getAuthor() {
-        assertEquals("testAuthor", testBook.getAuthor());
+        assertEquals("testAuthor", testLiterature.getAuthor());
     }
 
     @Test
@@ -34,7 +34,7 @@ public class BookTest {
 
     @Test
     public void getPublished() {
-        assertEquals(2019, testBook.getPublished());
+        assertEquals(2019, testLiterature.getPublished());
     }
 
     @Test
@@ -43,7 +43,7 @@ public class BookTest {
 
     @Test
     public void getEdition() {
-        assertEquals(1, testBook.getEdition());
+        assertEquals(1, testLiterature.getEdition());
     }
 
     @Test

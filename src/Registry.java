@@ -13,19 +13,19 @@ import java.util.Iterator;
 public class Registry {
 
     // DECLARE LIST
-    private ArrayList<Book> bookList;
+    private ArrayList<Literature> kioskRegistry;
 
     // DECLARE MANUAL TEST BOOK OBJECTS
-    private Book testBook;
-    private Book testBook2;
+    private Literature testBook;
+    private Literature testBook2;
 
     public Registry() {
         // INSTANTIATE LIST
-        this.bookList = new ArrayList<>();
+        this.kioskRegistry = new ArrayList<>();
 
         // CONSTRUCT MANUAL TEST BOOK OBJECTS
-        testBook = new Book("Peer Gynt", "H.Ibsen", 1990, 5);
-        testBook2 = new Book("How to train arms", "M. Kvendseth", 2035, 7);
+        testBook = new Literature("Peer Gynt", "H.Ibsen", 1990, 5);
+        testBook2 = new Literature("How to train arms", "M. Kvendseth", 2035, 7);
 
         fillRegistry();
 
@@ -36,22 +36,22 @@ public class Registry {
      */
     public void fillRegistry() {
 
-        addBook(testBook);
-        addBook(testBook2);
+        addLiterature(testBook);
+        addLiterature(testBook2);
 
     }
 
     /**
      * Add book to the registry
      *
-     * @param book
+     * @param literature
      */
-    public boolean addBook(Book book) {
+    public boolean addLiterature(Literature literature) {
 
         boolean added = false;
 
-        if(book != null){
-            bookList.add(book);
+        if(literature != null){
+            kioskRegistry.add(literature);
             added = true;
         }
         return added;
@@ -60,13 +60,13 @@ public class Registry {
     /**
      * Remove a book from the registry. If there are no books
      *
-     * @param book
+     * @param literature
      */
-    public void removeBook(Book book) {
+    public void removeLiterature(Literature literature) {
 
-        if (book != null) {
+        if (literature != null) {
 
-            bookList.remove(book);
+            kioskRegistry.remove(literature);
 
         }
 
@@ -75,11 +75,11 @@ public class Registry {
     /**
      * Show all books in the registry
      */
-    public void showBooks() {
+    public void showLiterature() {
 
-        for (int i = 0; i < bookList.size(); i++) {
+        for (int i = 0; i < kioskRegistry.size(); i++) {
 
-            System.out.println("- " + bookList.get(i).getTitle());
+            System.out.println("- " + kioskRegistry.get(i).getTitle());
         }
     }
 
@@ -89,19 +89,19 @@ public class Registry {
      * @param title
      */
 
-    public Book findBookByTitle(String title) {
+    public Literature findLiteratureByTitle(String title) {
         title = title.toLowerCase().trim(); // Trim whitespaces in search term.
-        Book foundBook = null;
-        Iterator<Book> it = this.bookList.iterator();
+        Literature foundLiterature = null;
+        Iterator<Literature> it = this.kioskRegistry.iterator();
 
-        while (it.hasNext() && foundBook == null) {
+        while (it.hasNext() && foundLiterature == null) {
 
-            Book book = it.next();
-            if (book.getTitle().toLowerCase().equals(title)) {
-                foundBook = book;
+            Literature literature = it.next();
+            if (literature.getTitle().toLowerCase().equals(title)) {
+                foundLiterature = literature;
             }
         }
-        return foundBook;
+        return foundLiterature;
     }
 
     /**
@@ -109,36 +109,36 @@ public class Registry {
      *
      * @param author
      */
-    public Book findBookByAuthor(String author) {
+    public Literature findLiteratureByAuthor(String author) {
         author = author.toLowerCase().trim();
-        Book foundBook = null;
-        Iterator<Book> it = this.bookList.iterator();
+        Literature foundLiterature = null;
+        Iterator<Literature> it = this.kioskRegistry.iterator();
 
-        while (it.hasNext() && foundBook == null) {
+        while (it.hasNext() && foundLiterature == null) {
 
-            Book book = it.next();
-            if (book.getAuthor().toLowerCase().equals(author)) {
-                foundBook = book;
+            Literature literature = it.next();
+            if (literature.getAuthor().toLowerCase().equals(author)) {
+                foundLiterature = literature;
             }
         }
-        return foundBook;
+        return foundLiterature;
     }
 
     /**
      * Find a book by the publish year
      */
-    public Book findBookByPublished(int published) {
-        Book foundBook = null;
-        Iterator<Book> it = this.bookList.iterator();
+    public Literature findLiteratureByPublished(int published) {
+        Literature foundLiterature = null;
+        Iterator<Literature> it = this.kioskRegistry.iterator();
 
-        while (it.hasNext() && foundBook == null) {
+        while (it.hasNext() && foundLiterature == null) {
 
-            Book book = it.next();
-            if (book.getPublished() == published) {
-                foundBook = book;
+            Literature literature = it.next();
+            if (literature.getPublished() == published) {
+                foundLiterature = literature;
             }
         }
-        return foundBook;
+        return foundLiterature;
     }
 
     /**
@@ -146,15 +146,15 @@ public class Registry {
      *
      * @return Iterator
      */
-    public Iterator<Book> getIterator() {
-        return this.bookList.iterator();
+    public Iterator<Literature> getIterator() {
+        return this.kioskRegistry.iterator();
     }
 
     public Boolean titleExist(String title) {
 
         Boolean exist = false;
 
-        if (findBookByTitle(title) != null) {
+        if (findLiteratureByTitle(title) != null) {
 
             exist = true;
         } else {
@@ -165,7 +165,7 @@ public class Registry {
 
     public int bookListSize(){
 
-        return bookList.size();
+        return kioskRegistry.size();
 
     }
 

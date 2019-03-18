@@ -114,7 +114,7 @@ public class ApplicationUI {
         // TODO create new class to handle io. This is just testing.
         System.out.println("Search for book by title: ");
         String title = in.nextLine();
-        Book bookByTitle = registry.findBookByTitle(title);
+        Literature bookByTitle = registry.findLiteratureByTitle(title);
 
 
         if (bookByTitle != null) {
@@ -133,11 +133,11 @@ public class ApplicationUI {
 
         System.out.println("Search for book by author: ");
         String author = in.nextLine();
-        Book bookByAuthor = registry.findBookByAuthor(author);
+        Literature litByAuthor = registry.findLiteratureByAuthor(author);
 
-        if (bookByAuthor != null) {
+        if (litByAuthor != null) {
 
-            System.out.println("Author found in registry -> " + bookByAuthor.toString());
+            System.out.println("Author found in registry -> " + litByAuthor.toString());
 
         } else {
             System.out.println("Could not find book");
@@ -155,29 +155,29 @@ public class ApplicationUI {
         Scanner removeInput = new Scanner(System.in);
         System.out.println("Please enter the title of the book you want removed: ");
         String searchString = removeInput.nextLine();
-        Book bookToBeFound = this.registry.findBookByTitle(searchString);
+        Literature litToBeFound = this.registry.findLiteratureByTitle(searchString);
 
-        if (bookToBeFound == null) {
+        if (litToBeFound == null) {
 
             System.out.println("Could not find book " + searchString);
 
         } else {
-            System.out.println("Are you sure you want to remove " + bookToBeFound.getTitle() + " - Y/N ?");
+            System.out.println("Are you sure you want to remove " + litToBeFound.getTitle() + " - Y/N ?");
             String answer = removeInput.nextLine();
             if (answer.equals("Y") || answer.equals("y")) {
-                registry.removeBook(bookToBeFound);
-                System.out.println(bookToBeFound.getTitle() + " has been removed from the registry! ");
+                registry.removeLiterature(litToBeFound);
+                System.out.println(litToBeFound.getTitle() + " has been removed from the registry! ");
             } else if (answer.equals("N") || answer.equals("n")) {
-                System.out.println("Book was not removed");
+                System.out.println("Literature was not removed");
             } else {
-                System.out.println("Could not understand you, aborting book removal.");
+                System.out.println("Could not understand you, aborting literature removal.");
             } // PACK THIS IN A WHILE TO HANDLE WRONG INPUT..MAYBE INTRODUCE A BACK / ABORT COMMAND?
         }
 
     }
 
     /**
-     * Search for books (sort) by  published year.
+     * Search for literature (sort) by  published year.
      */
     public void doSearchByPublishedYear() {
         boolean searchDone = false;
@@ -187,7 +187,7 @@ public class ApplicationUI {
             try {
                 System.out.println("Search for a book by published year");
                 year = Integer.parseInt(in.nextLine());
-                Book bookByYear = registry.findBookByPublished(year);
+                Literature bookByYear = registry.findLiteratureByPublished(year);
 
                 if (bookByYear != null) {
 
@@ -210,11 +210,11 @@ public class ApplicationUI {
 
     public void doShowAllBooks() {
         if (registry.bookListSize() > 0) {
-            System.out.println("Current books in registry");
-            registry.showBooks();
+            System.out.println("Current literature in registry");
+            registry.showLiterature();
             System.out.println(" ");
         } else {
-            System.out.println("There are no books in the registry!");
+            System.out.println("There is no literature in the registry!");
         }
 
     }
@@ -274,9 +274,9 @@ public class ApplicationUI {
         System.out.println(bookEdition + " has been added as publish year.");
 
         // CONSTRUCT BOOK, ADD BOOK TO REGISTRY, PRINT CONFIRMATION
-        Book book = new Book(bookTitle, bookAuthor, bookYearPublished, bookEdition);
-        registry.addBook(book);
-        System.out.println(book.getTitle() + " has been added!");
+        Literature literature = new Literature(bookTitle, bookAuthor, bookYearPublished, bookEdition);
+        registry.addLiterature(literature);
+        System.out.println(literature.getTitle() + " has been added!");
     }
 
 }
