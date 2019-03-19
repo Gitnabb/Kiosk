@@ -6,12 +6,17 @@ public class ApplicationUI {
     private final String SOFTWARE_NAME = "Kjetil and Andreas' Book Kiosk";
     private final String VERSION = "v1.0";
 
-    // DECLARE MAIN MENU CHOICES
-    private final static int ADD_BOOK_TO_REGISTRY = 1;
+    // MAIN MENU CHOICES
+    private final static int ADD_LITERATURE_TO_REGISTRY = 1;
     private final static int REMOVE_BOOK_FROM_REGISTRY = 2;
     private final static int SEARCH_FOR_BOOK = 3;
     private final static int SHOW_ALL_BOOKS = 4;
     private final static int EXIT = 5;
+
+    //
+    private final static int ADD_BOOK_TO_REGISTRY = 1;
+    private final static int ADD_NEWSPAPER_TO_REGISTRY = 2;
+    private final static int ADD_MAGAZINE_TO_REGISTRY = 3;
 
     private Scanner in = new Scanner(System.in);
     private Registry registry = new Registry();
@@ -32,9 +37,10 @@ public class ApplicationUI {
                 int menuSelection = this.showMenu(menuItems);
                 switch (menuSelection) {
 
-                    case ADD_BOOK_TO_REGISTRY:
-                        // Launch Add book menu
-                        addBookMenu();
+                    case ADD_LITERATURE_TO_REGISTRY:
+                        // Launch addLiteratureMenu
+                        addLiterature();
+                        // addBookMenu();
                         break;
 
                     case REMOVE_BOOK_FROM_REGISTRY:
@@ -88,12 +94,46 @@ public class ApplicationUI {
      */
     private final String[] menuItems = {
 
-            "1: Add book",
+            "1: Add literature",
             "2: Remove a book",
             "3: Search for books",
             "4: Show all books",
             "5: Exit program"
     };
+
+    private final String[] addLitmenuItems = {
+
+            "1: Book",
+            "2: Newspaper",
+            "3: Magazine"
+    };
+
+    public void addLiterature() {
+
+        try {
+            System.out.println("What would you like to add?");
+            int menuSelection = this.showMenu(addLitmenuItems);
+            switch (menuSelection) {
+
+                case ADD_BOOK_TO_REGISTRY:
+                    addBookMenu();
+                    break;
+
+                case ADD_NEWSPAPER_TO_REGISTRY:
+                    // addNewspaperMenu();
+                    break;
+
+                case ADD_MAGAZINE_TO_REGISTRY:
+                    // addMagazineMenu();
+                    break;
+
+            }
+        } catch (InputMismatchException ime) {
+            System.err.println("\nERROR: Please provide a number between 1 and " + (this.addLitmenuItems.length + 1) + "..\n");
+        }
+
+
+    }
 
     /**
      * Print a welcome message to the user
@@ -219,6 +259,8 @@ public class ApplicationUI {
 
     }
 
+
+
     /**
      * Add a book to the registry.
      * Takes input from user and validates them.
@@ -238,7 +280,7 @@ public class ApplicationUI {
                     System.out.println("Title added");
                     titleAdded = true;
                 } else {
-                    System.out.println("Book exists, try another title");
+                    System.out.println("Book exists! Try another title");
                 }
             } else {
                 System.out.println("Are you sure? Try again..");
@@ -277,6 +319,15 @@ public class ApplicationUI {
         Literature literature = new Literature(bookTitle, bookAuthor, bookYearPublished, bookEdition);
         registry.addLiterature(literature);
         System.out.println(literature.getTitle() + " has been added!");
+    }
+
+    public void addMagazineMenu() {
+
+        System.out.println("To add a Newspaper, start with entering the newspaper name: ");
+        in.nextLine();
+        String newspaperName = in.nextLine();
+
+
     }
 
 }
