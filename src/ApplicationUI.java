@@ -120,7 +120,7 @@ public class ApplicationUI {
                     break;
 
                 case ADD_NEWSPAPER_TO_REGISTRY:
-                    // addNewspaperMenu();
+                    addNewspaperMenu();
                     break;
 
                 case ADD_MAGAZINE_TO_REGISTRY:
@@ -259,8 +259,6 @@ public class ApplicationUI {
 
     }
 
-
-
     /**
      * Add a book to the registry.
      * Takes input from user and validates them.
@@ -284,12 +282,15 @@ public class ApplicationUI {
                 }
             } else {
                 System.out.println("Are you sure? Try again..");
+                bookTitle = in.nextLine();
             }
-            // bookTitle = in.nextLine();
         }
 
         System.out.println("Who wrote the book? ");
         String bookAuthor = in.nextLine();
+
+        System.out.println("Who is the publisher?");
+        String bookPublisher = in.nextLine();
 
         // ADDING YEAR PUBLISHED + CHECK IF YEAR IS VALID
         int bookYearPublished;
@@ -316,9 +317,32 @@ public class ApplicationUI {
         System.out.println(bookEdition + " has been added as publish year.");
 
         // CONSTRUCT BOOK, ADD BOOK TO REGISTRY, PRINT CONFIRMATION
-        Literature literature = new Literature(bookTitle, bookAuthor, bookYearPublished, bookEdition);
+        Literature literature = new Book(bookTitle, bookAuthor, bookPublisher, bookYearPublished, bookEdition);
         registry.addLiterature(literature);
         System.out.println(literature.getTitle() + " has been added!");
+    }
+
+    public void addNewspaperMenu() {
+
+        System.out.println("To add a newspaper, start with the title: ");
+        String newsPaperTitle = in.nextLine();
+        in.nextLine();
+
+        System.out.println("Who is the publisher?");
+        String newsPaperPublisher = in.nextLine();
+
+        System.out.println("How many times does it get published a year?");
+        int newspaperPublicationAmount = in.nextInt();
+
+        String periodicalType = "Newspaper";
+
+        String periodicalGenre = "News";
+
+      // CONSTRUCT NEWSPAPER, ADD IT TO REGISTRY, PRINT CONFIRMATION
+        Literature newspaper  = new Newspaper(newsPaperTitle, newsPaperPublisher, newspaperPublicationAmount, periodicalType, periodicalGenre);
+        registry.addLiterature(newspaper);
+        System.out.println(newspaper.getTitle() + " has been added!");
+
     }
 
     public void addMagazineMenu() {
@@ -326,8 +350,6 @@ public class ApplicationUI {
         System.out.println("To add a Newspaper, start with entering the newspaper name: ");
         in.nextLine();
         String newspaperName = in.nextLine();
-
-
     }
 
 }

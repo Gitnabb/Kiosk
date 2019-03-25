@@ -1,2 +1,3 @@
-public class Magazine extends Periodicals {
+public class Magazine extends Periodical {
+
 }

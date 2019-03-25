@@ -24,7 +24,7 @@ public class Registry {
         this.kioskRegistry = new ArrayList<>();
 
         // CONSTRUCT MANUAL TEST BOOK OBJECTS
-        testBook = new Literature("Peer Gynt", "H.Ibsen", 1990, 5);
+        testBook = new Book("Peer Gynt", "H.Ibsen", 1990, 5);
         testBook2 = new Literature("How to train arms", "M. Kvendseth", 2035, 7);
 
         fillRegistry();
