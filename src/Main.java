@@ -3,8 +3,7 @@ public class Main {
 
     public static void main(String args[]) {
 
-
-        ApplicationUI appUI = new ApplicationUI();
+        KioskApplicationUI appUI = new KioskApplicationUI();
         appUI.start();
 
     }

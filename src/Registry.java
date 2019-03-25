@@ -16,7 +16,6 @@ public class Registry {
     //defining fields
     private List<Literature> literatureList; // name of the Book-list
 
-
     /**
      * Constructs the list available to store the different literature
      */

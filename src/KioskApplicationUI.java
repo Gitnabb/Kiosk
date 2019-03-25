@@ -10,27 +10,33 @@ import java.util.Scanner;
  * @author <Andreas Øie>
  * @version 1.0
  */
-public class ApplicationUI {
+public class KioskApplicationUI {
 
     /**
      * Gives a brief view of the menu
      * the available options to the user
      */
     private String[] menuItems = {
-            "1. List all books",
-            "2. Add a new book",
-            "3. Find a book by name",
-            "4. Remove a book by name",
+            "1. List all literature",
+            "2. Add a new literature",
+            "3. Find a literature by name",
+            "4. Remove a literature by name",
             //the last option ( 5 ) is automatically created when called upon.
     };
 
-    private Registry bookReg;
+    private String[] literatureItems = {
+            "1. Book",
+            "2. Newspaper",
+            "3. Magazine",
+    };
+
+    private Registry literatureReg;
 
     /**
-     * Creates an instance of the ApplicationUI User interface.
+     * Creates an instance of the KioskApplicationUI User interface.
      */
-    public ApplicationUI() {
-        this.bookReg = new Registry();
+    public KioskApplicationUI() {
+        this.literatureReg = new Registry();
 
     }
 
@@ -48,19 +54,19 @@ public class ApplicationUI {
                 int menuSelection = this.showMenu();
                 switch (menuSelection) {
                     case 1:
-                        this.listAllBooks();
+                        this.listAllLiterature();
                         break;
 
                     case 2:
-                        this.addNewBook();
+                        this.addNewLiterature();
                         break;
 
                     case 3:
-                        this.findBookByTitle();
+                        this.findLiteratureByTitle();
                         break;
 
                     case 4:
-                        this.removeBookByTitle();
+                        this.removeLiteratureByTitle();
                         break;
 
                     case 5:
@@ -88,13 +94,13 @@ public class ApplicationUI {
      * @return the menu number (between 1 and max menu item number) provided by the user.
      * @throws InputMismatchException if user enters an invalid number/menu choice
      */
-    private int showMenu() throws InputMismatchException {
+    private int showMenu(String[] yourItems) throws InputMismatchException {
         System.out.println("\n**** Kiosk application v0.1 ****\n");
         // Display the menu
-        for ( String menuItem : menuItems ) {
+        for ( String menuItem : yourItems ) {
             System.out.println(menuItem);
         }
-        int maxMenuItemNumber = menuItems.length + 1;
+        int ma  xMenuItemNumber = yourItems.length + 1;
         // Add the "Exit"-choice to the menu
         System.out.println(maxMenuItemNumber + ". Exit\n");
         System.out.println("Please choose menu item (1-" + maxMenuItemNumber + "): ");
@@ -121,55 +127,21 @@ public class ApplicationUI {
     /**
      * Lists all the products/literature in the register
      */
-    private void listAllBooks() {
+    private void listAllLiterature() {
         System.out.println("\nList of all Books in the register:");
-        if(bookReg.getNumberOfBooks() == 0) {
+        if(literatureReg.getNumberOfLiterature() == 0) {
             System.out.println("There are no books in the registry.");
         }
         else {
-            Iterator<Book> bookIter = this.bookReg.getIterator();
-            while (bookIter.hasNext()) {
-                Book book = bookIter.next();
-                System.out.println(displayBook(book));
+            Iterator<Literature> literatureIter = this.literatureReg.getIterator();
+            while (literatureIter.hasNext()) {
+                Literature literature = literatureIter.next();
+                System.out.println(displayLiterature(literature));
             }
         }
 
     }
 
-
-    /**
-     * Add a new product/literature to the register.
-     * In this method you have to add code to ask the
-     * user for the necessary information you need to
-     * create an instance of the product, which you
-     * then send as a parameter to the addNewspaper()-
-     * method of the register.
-     * Remember to also handle invalid input from the
-     * user!!
-     */
-    private void addNewBook() {
-        Scanner reader = new Scanner(System.in);
-
-        System.out.println("Please enter the title of the book");
-        String title = reader.nextLine();
-
-        System.out.println("Please enter the author of the book");
-        String author = reader.nextLine();
-
-        System.out.println("Please enter the year the Book was published");
-        int published = reader.nextInt();
-
-        System.out.println("Please enter the edition number of the book");
-        int editionNumber = reader.nextInt();
-
-        Book book = new Book(title, author, published, editionNumber);
-        this.bookReg.registerBook(book);
-
-        System.out.println("the book " + book.getTitle() + " was successfully added to the registry.");
-
-        //Create a book was created confirmation-print
-        //With all the stats
-    }
 
     /**
      * Find and display a book based om name (title).
@@ -180,19 +152,19 @@ public class ApplicationUI {
      * Then, upon return from the register, you need
      * to print the details of the found item.
      */
-    private void findBookByTitle() {
+    private void findLiteratureByTitle() {
         System.out.println("Search for a book by title");
         Scanner reader = new Scanner(System.in);
 
         String searchTitle = reader.nextLine();
-        Book newBook = this.bookReg.searchForBookTitle(searchTitle);
+        Literature newLiterature = this.literatureReg.searchForLiteratureTitle(searchTitle);
 
-        if (newBook == null) {
+        if (newLiterature == null) {
             System.out.println("We didn't find the book called " + searchTitle);
         }
         else {
             // create a " displayBook " - method, use this here and in listALlBooks
-            System.out.println("We found the following book for you: " + displayBook(newBook));
+            System.out.println("We found the following book for you: " + displayLiterature(newLiterature));
         }
     }
 
@@ -201,33 +173,32 @@ public class ApplicationUI {
      * reads the following input, and checks if it exist
      * if so, it will become clear that it get's removed from the registry
      */
-    private void removeBookByTitle() {
+    private void removeLiteratureByTitle() {
         Scanner reader = new Scanner(System.in);
         System.out.println("Type the name of the book you want to remove.");
         String searchTitle = reader.nextLine();
         //searches for an exact book by the name of the searchTitle
-        Book findBook = this.bookReg.searchForBookTitle(searchTitle);
+        Literature findLiterature = this.literatureReg.searchForLiteratureTitle(searchTitle);
         //if it doesnt exist, we make sure to tell the user
-        if(findBook == null) {
-            System.out.println("We didn't find a book called " + searchTitle);
+        if(findLiterature == null) {
+            System.out.println("We didn't find a literature called " + searchTitle);
         }
         else {
-            bookReg.deleteBook(findBook);
-            System.out.println("the book " + findBook.getTitle() + " was removed from the book registry.");
+            literatureReg.deleteLiterature(findLiterature);
+            System.out.println("the book " + findLiterature.getTitle() + " was removed from the book registry.");
         }
-
     }
 
     /**
      * displays the all the vital information about the book given by the param
-     * @param book uses any book to return info given about it
+     * @param literature uses any book to return info given about it
      * @return returns the display info about the book
      */
-    private String displayBook(Book book) {
-        String display = "Title: " + book.getTitle()
-                + "  Author: " + book.getAuthor()
-                + "  Published: " + book.getPublished()
-                + "  Edition:  " + book.getEditionNumber();
+    private String displayLiterature(Literature literature) {
+        String display = "Title: " + literature.getTitle()
+                + "  Author: " + literature.getAuthor()
+                + "  Published: " + literature.getPublished()
+                + "  Edition:  " + literature.getEditionNumber();
         return display;
     }
 }

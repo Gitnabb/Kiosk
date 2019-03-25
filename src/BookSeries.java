@@ -13,7 +13,6 @@ public class BookSeries extends Book {
 
     // TODO: Add further fields to the class
 
-
     public BookSeries(String title, String publisher,
                       String author, int published,
                       int editionNumber, String titleSeries) {
