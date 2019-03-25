@@ -1,4 +1,14 @@
-
+/**
+ * Represents a Periodical class.
+ * This is tailored to setup the correct type of literature from the parent class
+ * This class holds information about the publication frequency, the type of publication
+ * as well as the genre of the periodical
+ * This class is extended by the parent class Literature
+ *
+ *  @author <Andreas Øie>
+ *  @version 1.0
+ *
+ */
 
 public class Periodical extends Literature {
 

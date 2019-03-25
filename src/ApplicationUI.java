@@ -24,13 +24,13 @@ public class ApplicationUI {
             //the last option ( 5 ) is automatically created when called upon.
     };
 
-    private BookRegistry bookReg;
+    private Registry bookReg;
 
     /**
      * Creates an instance of the ApplicationUI User interface.
      */
     public ApplicationUI() {
-        this.bookReg = new BookRegistry();
+        this.bookReg = new Registry();
 
     }
 

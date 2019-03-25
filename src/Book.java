@@ -3,12 +3,12 @@
  *  This class is designed to represent a Book with
  *  following details about the books' attributes.
  *
+ *  This class is extended by the parent class Literature
+ *
  *  @author <Andreas Øie>
  *  @version 1.0
  *
  */
-
-
 public class Book extends Literature{
 
     private String author; // author of the Book
@@ -53,20 +53,13 @@ public class Book extends Literature{
         return this.editionNumber;
     }
 
-    private void setTitle(String title) {
-        if(title == null){
-            this.title = "INVALID VALUE";
-        }
-        else{
-            if(title.length() == 0){
-                this.title = "INVALID VALUE";
-            }
-            else {
-                this.title = title;
-            }
-        }
-    }
-
+    /**
+     * A function tailored to give the user
+     * info weather the input is valid or not
+     * if the user fails to insert the correct/reasonable name
+     * he will notice a INVALID VALUE, which might help him understand
+     * @param author the author to be set of the book
+     */
     private void setAuthor(String author) {
         if(author ==  null){
             this.author = "INVALID VALUE";
@@ -81,6 +74,11 @@ public class Book extends Literature{
         }
     }
 
+    /**
+     * A method to help validate the correct values
+     * to be inserted into the book
+     * @param published the year the book was published
+     */
     private void setPublished(int published) {
         if(published > 0){
             this.published = published;
@@ -90,6 +88,11 @@ public class Book extends Literature{
         }
 
     }
+
+    /**
+     * a method to set a valid editionNumber for the book
+     * @param editionNumber the editionNumber of the book (1st, 2nd, ..)
+     */
     private void setEditionNumber(int editionNumber) {
         if(editionNumber >= 0){
             this.editionNumber = editionNumber;

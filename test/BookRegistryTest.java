@@ -6,8 +6,8 @@ import static org.junit.Assert.*;
 
 public class BookRegistryTest {
 
-    private ArrayList<Book> bookList; // name of the Book-list
-    private BookRegistry bookReg;
+    private ArrayList<Book> BookList; // name of the Book-list
+    private BookRegistry BookReg;
     private Book book1;
     private Book book2;
     private Book book3;
