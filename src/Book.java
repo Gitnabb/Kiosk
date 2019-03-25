@@ -9,9 +9,8 @@
  */
 
 
-public class Book {
+public class Book extends Literature{
 
-    private String title; // title of the Book
     private String author; // author of the Book
     private int published; // the year the Book was published
     private int editionNumber; // the edition of the Book
@@ -23,19 +22,11 @@ public class Book {
      * @param published the year the Book was published
      * @param editionNumber the edition of the Book
      */
-    public Book(String title, String author, int published, int editionNumber) {
-        setTitle(title);
+    public Book(String title, String publisher, String author, int published, int editionNumber) {
+        super(title, publisher);
         setAuthor(author);
         setPublished(published);
         setEditionNumber(editionNumber);
-    }
-
-    /**
-     * Returns the title of the book
-     * @return the title of the book
-     */
-    public String getTitle() {
-        return this.title;
     }
 
     /**
