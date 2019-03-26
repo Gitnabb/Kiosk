@@ -7,14 +7,29 @@
 
 public class Periodical extends Literature {
 
-    private int publicationAmount;
+    private int publicationAmountPerYear;
     private String periodicalType;
     private String periodicalGenre;
 
-    public Periodical(String title, String publisher, int publicationAmount, String periodicalType, String periodicalGenre) {
-        super(title, publisher);
-        this.publicationAmount = publicationAmount;
+    public Periodical(String title, String publisher,
+                      String genre, String price,
+                      String date, int publicationAmountPerYear,
+                      String periodicalType, String periodicalGenre) {
+        super(title, publisher, genre, price, date);
+        this.publicationAmountPerYear = publicationAmountPerYear;
         this.periodicalType = periodicalType;
         this.periodicalGenre = periodicalGenre;
+    }
+
+    public int getPublicationAmountPerYear() {
+        return publicationAmountPerYear;
+    }
+
+    public String getPeriodicalType() {
+        return periodicalType;
+    }
+
+    public String getPeriodicalGenre() {
+        return periodicalGenre;
     }
 }

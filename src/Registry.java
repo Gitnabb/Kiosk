@@ -24,8 +24,8 @@ public class Registry {
         this.kioskRegistry = new ArrayList<>();
 
         // CONSTRUCT MANUAL TEST BOOK OBJECTS
-        testBook = new Book("Peer Gynt", "H.Ibsen", 1990, 5);
-        testBook2 = new Literature("How to train arms", "M. Kvendseth", 2035, 7);
+        testBook = new Book("Peer Gynt", "Gyldendal", "H.Ibsen", 1900, 1);
+        testBook2 = new Book("How to train arms", "Kjetils Forlag", "M. Kvendseth", 2019, 1);
 
         fillRegistry();
 
@@ -109,19 +109,22 @@ public class Registry {
      *
      * @param author
      */
-    public Literature findLiteratureByAuthor(String author) {
+    public Iterator<Literature> findBookByAuthor(String author) {
         author = author.toLowerCase().trim();
-        Literature foundLiterature = null;
+        ArrayList<Literature> foundLiteratures = new ArrayList<>();
         Iterator<Literature> it = this.kioskRegistry.iterator();
 
-        while (it.hasNext() && foundLiterature == null) {
+        while (it.hasNext()) {
 
             Literature literature = it.next();
-            if (literature.getAuthor().toLowerCase().equals(author)) {
-                foundLiterature = literature;
+            if(literature instanceof Book){
+                Book book = (Book) literature;
+                if (book.getAuthor().toLowerCase().equals(author)) {
+                    foundLiteratures.add(literature);
+                }
             }
         }
-        return foundLiterature;
+        return foundLiteratures.iterator();
     }
 
     /**
@@ -134,8 +137,11 @@ public class Registry {
         while (it.hasNext() && foundLiterature == null) {
 
             Literature literature = it.next();
-            if (literature.getPublished() == published) {
-                foundLiterature = literature;
+            if(literature instanceof Book){
+                Book book = (Book) literature;
+                if (book.getPublished() == published) {
+                    foundLiterature = literature;
+                }
             }
         }
         return foundLiterature;

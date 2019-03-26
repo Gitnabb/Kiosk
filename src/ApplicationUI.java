@@ -1,4 +1,5 @@
 import java.util.InputMismatchException;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class ApplicationUI {
@@ -173,16 +174,11 @@ public class ApplicationUI {
 
         System.out.println("Search for book by author: ");
         String author = in.nextLine();
-        Literature litByAuthor = registry.findLiteratureByAuthor(author);
-
-        if (litByAuthor != null) {
-
-            System.out.println("Author found in registry -> " + litByAuthor.toString());
-
-        } else {
-            System.out.println("Could not find book");
+        Iterator<Literature> itByAuthor = registry.findBookByAuthor(author);
+        while(itByAuthor.hasNext()) {
+            Book book = itByAuthor.hasNext();
+            // doDisplayBook(book);
         }
-
     }
 
     /**
@@ -292,6 +288,15 @@ public class ApplicationUI {
         System.out.println("Who is the publisher?");
         String bookPublisher = in.nextLine();
 
+        System.out.println("What genre is it?");
+        String bookGenre = in.nextLine();
+
+        System.out.println("What is the price?");
+        String bookPrice = in.nextLine();
+
+        System.out.println("What is the price?");
+        String bookPrice = in.nextLine();
+
         // ADDING YEAR PUBLISHED + CHECK IF YEAR IS VALID
         int bookYearPublished;
         do {
@@ -317,7 +322,7 @@ public class ApplicationUI {
         System.out.println(bookEdition + " has been added as publish year.");
 
         // CONSTRUCT BOOK, ADD BOOK TO REGISTRY, PRINT CONFIRMATION
-        Literature literature = new Book(bookTitle, bookAuthor, bookPublisher, bookYearPublished, bookEdition);
+        Literature literature = new Book(bookTitle, bookPublisher, bookGenre, bookPrice,
         registry.addLiterature(literature);
         System.out.println(literature.getTitle() + " has been added!");
     }
@@ -347,7 +352,7 @@ public class ApplicationUI {
 
     public void addMagazineMenu() {
 
-        System.out.println("To add a Newspaper, start with entering the newspaper name: ");
+        System.out.println("To add a Magazine, start with entering the newspaper name: ");
         in.nextLine();
         String newspaperName = in.nextLine();
     }

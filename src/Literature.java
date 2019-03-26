@@ -1,13 +1,18 @@
 public class Literature {
 
-    private String title; // Title of a book
-    private String publisher; // Publisher of a book
+    private String title; // Title of literature
+    private String publisher; // Publisher of literature
+    private String genre;
+    private String price;
+    private String date;
 
-    public Literature(String title, String publisher) {
+    public Literature(String title, String publisher, String genre, String price, String date) {
         this.title = title;
         this.publisher = publisher;
+        this.genre = genre;
+        this.price = price;
+        this.date = date;
     }
-
 
     /**
      * Returns the title of the literature when called.
@@ -25,10 +30,23 @@ public class Literature {
         this.title = title;
     }
 
-    /**
-     * Consolidates get methods and returns formatted String.
-     * @Override Skip existing toString method.
-     * @return String
-     */
+    public String getPublisher() {
+        return publisher;
+    }
 
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public String getDate() {
+        return date;
+    }
 }
