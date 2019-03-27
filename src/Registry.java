@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 /**
  * Represents a database for registering the different literature
@@ -14,7 +13,7 @@ import java.util.List;
 public class Registry {
 
     //defining fields
-    private List<Literature> literatureList; // name of the Book-list
+    private ArrayList<Literature> literatureList; // name of the Book-list
 
     /**
      * Constructs the list available to store the different literature

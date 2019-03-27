@@ -20,16 +20,17 @@ public class KioskApplicationUI {
      */
     private String[] menuItems = {
             "1. List all literature",
-            "2. Add a new literature",
-            "3. Find a literature by name",
-            "4. Remove a literature by name",
+            "2. Add literature to register",
+            "3. Find literature",
+            "4. Convert book to series",
             //the last option ( 5 ) is automatically created when called upon.
     };
 
     private String[] literatureItems = {
-            "1. Book",
-            "2. Newspaper",
-            "3. Magazine",
+            "1. Newspaper",
+            "2. Magazine",
+            "3. Book",
+            "4. BookSeries",
     };
 
 
@@ -43,7 +44,7 @@ public class KioskApplicationUI {
     private final static int NEWSPAPER = 1;
     private final static int MAGAZINE = 2;
     private final static int BOOK = 3;
-    private final static int BOOKSERIES = 4;
+    private final static int BOOK_SERIES = 4;
 
     /**
      * Creates an instance of the KioskApplicationUI User interface.
@@ -83,7 +84,7 @@ public class KioskApplicationUI {
                             case BOOK:
                                 this.application.doAddLiteratureToRegister();
                                 break;
-                            case BOOKSERIES:
+                            case BOOK_SERIES:
                                 this.application.doAddLiteratureToRegister();
                                 break;
                             case EXIT:

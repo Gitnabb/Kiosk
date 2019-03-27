@@ -44,11 +44,11 @@ public abstract class Literature {
      * @param title the title to be set of the book
      */
     protected void setTitle(String title) {
-        if(title == null){
+        if(title == null) {
             this.title = "INVALID VALUE";
         }
         else{
-            if(title.length() == 0){
+            if(title.length() == 0) {
                 this.title = "INVALID VALUE";
             }
             else {
@@ -65,15 +65,15 @@ public abstract class Literature {
      * @param publisher the publisher to be set of the book
      */
     protected void setPublisher(String publisher) {
-        if(publisher == null){
+        if(publisher == null) {
             this.publisher = "INVALID VALUE";
         }
         else{
-            if(publisher.length() == 0){
+            if(publisher.length() == 0) {
                 this.publisher = "INVALID VALUE";
             }
             else {
-                this.publisher = title;
+                this.publisher = publisher;
             }
         }
     }

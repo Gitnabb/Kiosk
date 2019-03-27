@@ -13,12 +13,11 @@ import java.util.Scanner;
 
 public class KioskApplicationImpl implements KioskApplication {
 
-    private Registry literatureList;
-    private BookSeries bookSeries;
+    private Registry literatureRegister;
 
     @Override
-    public void init()
-    {
+    public void init() {
+        this.literatureRegister = new Registry();
         this.fillRegistersWithDataForTesting();
     }
 
@@ -43,16 +42,16 @@ public class KioskApplicationImpl implements KioskApplication {
 
         int setupValue = scanner.nextInt();
 
-        // TODO: complete doAddNewspaperToRegistry, doAddMagazineToRegistry, doAddBookSeriesToRegistry
+        // TODO: complete doAddBookToRegistry, doAddMagazineToRegistry, doAddBookSeriesToRegistry
 
         if(setupValue == 1) {
-            doAddNewspaperToRegistry();
+            doAddNewspaperToRegistry(); // FINISHED :)))
         }
         else if (setupValue == 2) {
             doAddMagazineToRegistry();
         }
         else if (setupValue == 3) {
-            doAddBookToRegistry(); // FINISHED :)))
+            doAddBookToRegistry();
         }
         else if(setupValue == 4) {
             doAddBookSeriesToRegistry();
@@ -62,15 +61,16 @@ public class KioskApplicationImpl implements KioskApplication {
     @Override
     public void doListAllLiterature() {
 
-        if(0 == this.literatureList.getNumberOfLiterature()) {
+        if(0 == this.literatureRegister.getNumberOfLiterature()) {
             System.out.println("There is no literature in the registry.");
         }
         else {
             System.out.println("Listing all current literature: ");
-            Iterator<Literature> it = this.literatureList.getIterator();
+            Iterator<Literature> it = this.literatureRegister.getIterator();
             while(it.hasNext()) {
                 Literature literature = it.next();
                 displayLiterature(literature);
+                System.out.println();
             }
         }
     }
@@ -84,16 +84,19 @@ public class KioskApplicationImpl implements KioskApplication {
         System.out.println("Search by publisher: ");
         String publisher = reader.nextLine();
 
-        if(0 == this.literatureList.getNumberOfLiterature()) {
+        if(0 == this.literatureRegister.getNumberOfLiterature()) {
             System.out.println("There is no literature in the registry.");
         }
         else {
-            System.out.println("Searching for literature .... ");
-            Iterator<Literature> it = this.literatureList.getIterator();
+            System.out.println("-----------------------------------");
+            System.out.println("    Your search resulted in: ");
+            System.out.println("-----------------------------------");
+            Iterator<Literature> it = this.literatureRegister.getIterator();
             while(it.hasNext()) {
                 Literature literature = it.next();
-                while(literature.getTitle().equals(title) && literature.getPublisher().equals(publisher)){
+                if(literature.getTitle().equals(title) && literature.getPublisher().equals(publisher)){
                     displayLiterature(literature);
+                    System.out.println();
                 }
             }
         }
@@ -108,6 +111,8 @@ public class KioskApplicationImpl implements KioskApplication {
     @Override
     public void doConvertBookToSeries() {
 
+        // TODO: fix this class, "bookSeries" inherits from Literature
+
         Scanner reader = new Scanner(System.in);
 
         System.out.println("Enter book title: ");
@@ -116,21 +121,22 @@ public class KioskApplicationImpl implements KioskApplication {
         System.out.println("Enter book edition number: ");
         int bookPublisher = reader.nextInt();
 
-        if(0 == this.literatureList.getNumberOfLiterature()) {
+        if(0 == this.literatureRegister.getNumberOfLiterature()) {
             System.out.println("Literature is empty!");
         }
         else {
             System.out.println("Finding book ... ");
-            Iterator<Literature> it = this.literatureList.getIterator();
+            Iterator<Literature> it = this.literatureRegister.getIterator();
             while(it.hasNext()) {
                 Literature literature = it.next();
                 if(literature instanceof Book) {
                     Book foundBook = (Book) literature;
-                    bookSeries.addBookToSeries(foundBook);
+                    System.out.println("Converting into series ... ");
+                    BookSeries bookSeries =
+                    this.bookSeries.addBookToSeries(foundBook);
                     System.out.println("The book + " + foundBook.getTitle() + "was added to registry");
                 }
             }
-
         }
     }
 
@@ -145,23 +151,23 @@ public class KioskApplicationImpl implements KioskApplication {
 
         Literature bookSer = new BookSeries("Harry-Potter Collection","Cappelen damm","J.K. Rowling");
 
-        Literature magazine1 = new Magazine("TU","Teknisk Ukeblad Media AS",12,"Magazine","Tech","Steve Jobs");
-        Literature magazine2 = new Magazine("TU","Teknisk Ukeblad Media AS",25,"Magazine","Tech","Elon Musk");
+        Literature magazine1 = new Magazine("TU 1","Teknisk Ukeblad Media AS",12,"Magazine","Tech","Steve Jobs");
+        Literature magazine2 = new Magazine("TU 2","Teknisk Ukeblad Media AS",25,"Magazine","Tech","Elon Musk");
 
         Literature newspaper1 = new Newspaper("VG","Schibsted",200,"Newspaper","News","Sudoku");
         Literature newspaper2 = new Newspaper("VG","Schibsted",100,"Newspaper","News","Cross-word puzzle");
 
 
-        this.literatureList.registerLiterature(book1);
-        this.literatureList.registerLiterature(book2);
+        this.literatureRegister.registerLiterature(book1);
+        this.literatureRegister.registerLiterature(book2);
 
-        this.literatureList.registerLiterature(bookSer);
+        this.literatureRegister.registerLiterature(bookSer);
 
-        this.literatureList.registerLiterature(magazine1);
-        this.literatureList.registerLiterature(magazine2);
+        this.literatureRegister.registerLiterature(magazine1);
+        this.literatureRegister.registerLiterature(magazine2);
 
-        this.literatureList.registerLiterature(newspaper1);
-        this.literatureList.registerLiterature(newspaper2);
+        this.literatureRegister.registerLiterature(newspaper1);
+        this.literatureRegister.registerLiterature(newspaper2);
     }
 
     /**
@@ -175,20 +181,20 @@ public class KioskApplicationImpl implements KioskApplication {
         System.out.println("Publisher:  " + literature.getPublisher());
 
         if(literature instanceof Book) {
-            Book printLiterature = (Book) literature;
-            System.out.println("Author:  " + printLiterature.getAuthor());
-            System.out.println("Published:  " + printLiterature.getPublished());
-            System.out.println("Edition number:  " + printLiterature.getEditionNumber());
+            Book book = (Book) literature;
+            System.out.println("Author:  " + book.getAuthor());
+            System.out.println("Published:  " + book.getPublished());
+            System.out.println("Edition number:  " + book.getEditionNumber());
         }
 
         else if(literature instanceof BookSeries) {
-            BookSeries printLiterature = (BookSeries) literature;
-            System.out.println("Author:  " + printLiterature.getAuthors());
+            BookSeries aBookSeries = (BookSeries) literature;
+            System.out.println("Author:  " + aBookSeries.getAuthors());
         }
 
         else if(literature instanceof Newspaper) {
             Newspaper newspaper = (Newspaper) literature;
-            System.out.println("Publication amount:  " + newspaper.getPublicationAmount());
+            System.out.println("Publication amount:  " + newspaper.getPublicationAmount() + " each year.");
             System.out.println("Periodical type:  " + newspaper.getPeriodicalType());
             System.out.println("periodical genre:  " + newspaper.getPeriodicalGenre());
             System.out.println("Brain teaser:  " + newspaper.getBrainteaser());
@@ -203,7 +209,8 @@ public class KioskApplicationImpl implements KioskApplication {
         }
     }
 
-    private void doAddNewspaperToRegistry() {
+    private void doAddBookToRegistry() {
+
 
     }
 
@@ -211,34 +218,41 @@ public class KioskApplicationImpl implements KioskApplication {
 
     }
 
-    private void doAddBookToRegistry() {
+    /**
+     * This method is tailored to add a book to the literature registry
+     * By using a scanner we can transform input in to the book-object.
+     * NOTICE: We use scanner3.nextLine() to clear the previous input
+     *          so we avoid any trouble causing the input to mis-match.
+     */
+    private void doAddNewspaperToRegistry() {
         Scanner scanner3 = new Scanner(System.in);
-        System.out.println("The book needs # ");
+        System.out.println("The newspaper needs # ");
 
         System.out.println("Title: ");
         String title = scanner3.nextLine();
 
-        System.out.println("Publisher: ");
+        System.out.println("Publisher: ('forlag' in norwegian)");
         String publisher = scanner3.nextLine();
 
         System.out.println("Publication amount: ");
         int publicationAmount = scanner3.nextInt();
+        scanner3.nextLine();
 
-        System.out.println("Periodical type: ");
+        System.out.println("Periodical type: Newspaper / Magazine / Book / Book series (?)");
         String periodicalType = scanner3.nextLine();
 
-        System.out.println("Periodical genre: ");
+        System.out.println("Periodical genre: (such as: Sports, News ... ");
         String periodicalGenre = scanner3.nextLine();
 
-        System.out.println("Brain Teaser: ");
+        System.out.println("Brain Teaser: (such as: Sudoku, Riddle, Cross-word-puzzle ...) ");
         String brainTeaser = scanner3.nextLine();
 
         Literature newspaper = new Newspaper(title , publisher, publicationAmount,
                 periodicalType, periodicalGenre, brainTeaser);
 
-        literatureList.registerLiterature(newspaper);
+        literatureRegister.registerLiterature(newspaper);
 
-        System.out.println("Literature " + newspaper.getTitle() + " from " + newspaper.getPublisher()
+        System.out.println("the Literature [ " + newspaper.getTitle() + " ] from " + newspaper.getPublisher()
                 + " was added to the registry.");
 
     }
