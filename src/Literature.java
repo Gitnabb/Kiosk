@@ -8,7 +8,7 @@
  *
  */
 
-public class Literature {
+public abstract class Literature {
 
     //holds the name, front-page-phrasing etc, for the specific literature
     private String title;
@@ -77,4 +77,5 @@ public class Literature {
             }
         }
     }
+
 }

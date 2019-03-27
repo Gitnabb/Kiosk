@@ -12,6 +12,8 @@ import java.util.Scanner;
  */
 public class KioskApplicationUI {
 
+    private KioskApplication application = null;
+
     /**
      * Gives a brief view of the menu
      * the available options to the user
@@ -30,14 +32,24 @@ public class KioskApplicationUI {
             "3. Magazine",
     };
 
-    private Registry literatureReg;
+
+    private final static int LIST_ALL_LITERATURE = 1;
+    private final static int ADD_LITERATURE_TO_REGISTER = 2;
+    private final static int FIND_LITERATURE = 3;
+    private final static int CONVERT_BOOK_TO_SERIES = 4;
+    private final static int EXIT = 5;
+
+
+    private final static int NEWSPAPER = 1;
+    private final static int MAGAZINE = 2;
+    private final static int BOOK = 3;
+    private final static int BOOKSERIES = 4;
 
     /**
      * Creates an instance of the KioskApplicationUI User interface.
      */
     public KioskApplicationUI() {
-        this.literatureReg = new Registry();
-
+        this.application = new KioskApplicationImpl();
     }
 
     /**
@@ -45,31 +57,50 @@ public class KioskApplicationUI {
      * user.
      */
     public void start() {
-        this.init();
+
+        this.application.init();
 
         boolean quit = false;
 
         while (!quit) {
             try {
-                int menuSelection = this.showMenu();
+                int menuSelection = this.showMenu(menuItems);
                 switch (menuSelection) {
-                    case 1:
-                        this.listAllLiterature();
+
+                    case LIST_ALL_LITERATURE:
+                        this.application.doListAllLiterature();
                         break;
 
-                    case 2:
-                        this.addNewLiterature();
+                    case ADD_LITERATURE_TO_REGISTER:
+                        int secondMenuSelection = this.showMenu(literatureItems);
+                        switch (secondMenuSelection) {
+                            case NEWSPAPER:
+                                this.application.doAddLiteratureToRegister();
+                                break;
+                            case MAGAZINE:
+                                this.application.doAddLiteratureToRegister();
+                                break;
+                            case BOOK:
+                                this.application.doAddLiteratureToRegister();
+                                break;
+                            case BOOKSERIES:
+                                this.application.doAddLiteratureToRegister();
+                                break;
+                            case EXIT:
+                                System.out.println("Exiting registration of literature");
+                                break;
+                        }
                         break;
 
-                    case 3:
-                        this.findLiteratureByTitle();
+                    case FIND_LITERATURE:
+                        this.application.doFindLiterature();
                         break;
 
-                    case 4:
-                        this.removeLiteratureByTitle();
+                    case CONVERT_BOOK_TO_SERIES:
+                        this.application.doConvertBookToSeries();
                         break;
 
-                    case 5:
+                    case EXIT:
                         System.out.println("\nThank you for using Application v0.1. Bye!\n");
                         quit = true;
                         break;
@@ -94,13 +125,13 @@ public class KioskApplicationUI {
      * @return the menu number (between 1 and max menu item number) provided by the user.
      * @throws InputMismatchException if user enters an invalid number/menu choice
      */
-    private int showMenu(String[] yourItems) throws InputMismatchException {
+    private int showMenu(String[] theMenuItems) throws InputMismatchException {
         System.out.println("\n**** Kiosk application v0.1 ****\n");
         // Display the menu
-        for ( String menuItem : yourItems ) {
+        for (String menuItem : theMenuItems) {
             System.out.println(menuItem);
         }
-        int ma  xMenuItemNumber = yourItems.length + 1;
+        int maxMenuItemNumber = theMenuItems.length + 1;
         // Add the "Exit"-choice to the menu
         System.out.println(maxMenuItemNumber + ". Exit\n");
         System.out.println("Please choose menu item (1-" + maxMenuItemNumber + "): ");
@@ -111,94 +142,5 @@ public class KioskApplicationUI {
             throw new InputMismatchException();
         }
         return menuSelection;
-    }
-
-    // ------ The methods below this line are "helper"-methods, used from the menu ----
-    // ------ All these methods are made private, since they are only used by the menu ---
-
-    /**
-     * Initializes the application.
-     * Typically you would create the LiteratureRegistrer-instance here
-     */
-    private void init() {
-        System.out.println("init() was called");
-    }
-
-    /**
-     * Lists all the products/literature in the register
-     */
-    private void listAllLiterature() {
-        System.out.println("\nList of all Books in the register:");
-        if(literatureReg.getNumberOfLiterature() == 0) {
-            System.out.println("There are no books in the registry.");
-        }
-        else {
-            Iterator<Literature> literatureIter = this.literatureReg.getIterator();
-            while (literatureIter.hasNext()) {
-                Literature literature = literatureIter.next();
-                System.out.println(displayLiterature(literature));
-            }
-        }
-
-    }
-
-
-    /**
-     * Find and display a book based om name (title).
-     * As with the addNewBook()-method, you have to
-     * ask the user for the string (/title/)
-     * to search for, and then use this string as input-
-     * parameter to the method in the register-object.
-     * Then, upon return from the register, you need
-     * to print the details of the found item.
-     */
-    private void findLiteratureByTitle() {
-        System.out.println("Search for a book by title");
-        Scanner reader = new Scanner(System.in);
-
-        String searchTitle = reader.nextLine();
-        Literature newLiterature = this.literatureReg.searchForLiteratureTitle(searchTitle);
-
-        if (newLiterature == null) {
-            System.out.println("We didn't find the book called " + searchTitle);
-        }
-        else {
-            // create a " displayBook " - method, use this here and in listALlBooks
-            System.out.println("We found the following book for you: " + displayLiterature(newLiterature));
-        }
-    }
-
-    /**
-     * removes a book from the registry by the name of the book
-     * reads the following input, and checks if it exist
-     * if so, it will become clear that it get's removed from the registry
-     */
-    private void removeLiteratureByTitle() {
-        Scanner reader = new Scanner(System.in);
-        System.out.println("Type the name of the book you want to remove.");
-        String searchTitle = reader.nextLine();
-        //searches for an exact book by the name of the searchTitle
-        Literature findLiterature = this.literatureReg.searchForLiteratureTitle(searchTitle);
-        //if it doesnt exist, we make sure to tell the user
-        if(findLiterature == null) {
-            System.out.println("We didn't find a literature called " + searchTitle);
-        }
-        else {
-            literatureReg.deleteLiterature(findLiterature);
-            System.out.println("the book " + findLiterature.getTitle() + " was removed from the book registry.");
-        }
-    }
-
-    /**
-     * displays the all the vital information about the book given by the param
-     * @param literature uses any book to return info given about it
-     * @return returns the display info about the book
-     */
-    private String displayLiterature(Literature literature) {
-        String display = "Title: " + literature.getTitle()
-                + "  Author: " + literature.getAuthor()
-                + "  Published: " + literature.getPublished()
-                + "  Edition:  " + literature.getEditionNumber();
-        return display;
     }
 }

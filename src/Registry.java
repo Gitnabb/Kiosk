@@ -48,7 +48,7 @@ public class Registry {
      * @param title Searches for a book by its title.
      * @return returns the correct object with the following title inside it.
      */
-    public Literature searchForLiteratureTitle(String title) {
+    public Literature searchForLiteratureTitle(String title, String publisher) {
 
         Literature literature = null;
         boolean found = false;
@@ -61,8 +61,7 @@ public class Registry {
 
             Literature literatureNext = it.next();
 
-            if (literatureNext.getTitle().equals(title))
-            {
+            if (literatureNext.getTitle().equals(title) && literatureNext.getPublisher().equals(publisher)) {
                 literature = literatureNext;
                 found = true;
             }

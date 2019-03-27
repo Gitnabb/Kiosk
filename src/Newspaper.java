@@ -40,4 +40,8 @@ public class Newspaper extends Periodical {
         super(title, publisher, publicationAmount, periodicalType, periodicalGenre);
         this.brainteaser = brainteaser;
     }
+
+    public String getBrainteaser() {
+        return brainteaser;
+    }
 }

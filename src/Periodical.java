@@ -10,7 +10,7 @@
  *
  */
 
-public class Periodical extends Literature {
+public abstract class Periodical extends Literature {
 
     private int publicationAmount; // once a year for instance
     private String periodicalType; // newspaper, magazine etc..
@@ -26,5 +26,13 @@ public class Periodical extends Literature {
 
     public int getPublicationAmount() {
         return publicationAmount;
+    }
+
+    public String getPeriodicalType() {
+        return periodicalType;
+    }
+
+    public String getPeriodicalGenre() {
+        return periodicalGenre;
     }
 }
