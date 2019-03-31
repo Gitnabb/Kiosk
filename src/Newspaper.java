@@ -41,6 +41,10 @@ public class Newspaper extends Periodical {
         this.brainteaser = brainteaser;
     }
 
+    /**
+     * returns the newspaper's brain teaser
+     * @return the newspaper's brain teaser
+     */
     public String getBrainteaser() {
         return brainteaser;
     }

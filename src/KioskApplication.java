@@ -1,7 +1,8 @@
 /**
- *
- *
- *
+ * This interface is designed to act a connector between the UI class and the
+ * implementing class with all of its methods used in the UI.
+ * This interface will guide all methods triggered in the KioskApplicationImpl-class
+ * By that saying, all methods goes via this interface.
  *
  * @author <Andreas Øie>
  * @version 1.0

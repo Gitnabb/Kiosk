@@ -16,7 +16,16 @@ public abstract class Periodical extends Literature {
     private String periodicalType; // newspaper, magazine etc..
     private String periodicalGenre; // genre of periodical, like sports / news / travel
 
-
+    /**
+     * Constructs the Periodical with a title,
+     * publisher, publication amount, periodical type and the genre.
+     * Since the class is abstract, if wont ever be used.
+     * @param title
+     * @param publisher
+     * @param publicationAmount
+     * @param periodicalType
+     * @param periodicalGenre
+     */
     public Periodical(String title, String publisher, int publicationAmount, String periodicalType, String periodicalGenre) {
         super(title, publisher);
         this.publicationAmount = publicationAmount;
@@ -24,14 +33,26 @@ public abstract class Periodical extends Literature {
         this.periodicalGenre = periodicalGenre;
     }
 
+    /**
+     * returns the amount of publications
+     * @return the amount of publications
+     */
     public int getPublicationAmount() {
         return publicationAmount;
     }
 
+    /**
+     * retunrs the type of periodical
+     * @return the type of periodical
+     */
     public String getPeriodicalType() {
         return periodicalType;
     }
 
+    /**
+     * returns the genre of the periodical
+     * @return the genre of the periodical
+     */
     public String getPeriodicalGenre() {
         return periodicalGenre;
     }

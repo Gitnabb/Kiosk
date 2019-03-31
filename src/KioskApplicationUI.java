@@ -15,7 +15,7 @@ public class KioskApplicationUI {
     private KioskApplication application = null;
 
     /**
-     * Gives a brief view of the menu
+     * Gives a brief view of the main menu
      * the available options to the user
      */
     private String[] menuItems = {
@@ -25,6 +25,11 @@ public class KioskApplicationUI {
             "4. Convert book to series",
             //the last option ( 5 ) is automatically created when called upon.
     };
+
+    /**
+     * Gives a brief view of the literature-menu
+     * the available options to the user
+     */
 
     private String[] literatureItems = {
             "1. Newspaper",
@@ -59,6 +64,7 @@ public class KioskApplicationUI {
      */
     public void start() {
 
+        // creates a registry and adds examples to it.
         this.application.init();
 
         boolean quit = false;
@@ -118,7 +124,7 @@ public class KioskApplicationUI {
     }
 
     /**
-     * Displays the menu to the user, and waits for the users input. The user is
+     * Displays a menu to the user, and waits for the users input. The user is
      * expected to input an integer between 1 and the max number of menu items.
      * If the user inputs anything else, an InputMismatchException is thrown.
      * The method returns the valid input from the user.
@@ -144,4 +150,6 @@ public class KioskApplicationUI {
         }
         return menuSelection;
     }
+
+
 }

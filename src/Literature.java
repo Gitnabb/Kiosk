@@ -1,5 +1,5 @@
 /**
- * Act like the main class for the whole literature-universe
+ * Act like the main class for the main-literature
  * This class is supposed to form the back bones of the structure
  * to be used further into different types of sub-literature
  *
