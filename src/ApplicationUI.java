@@ -154,7 +154,9 @@ public class ApplicationUI {
 
         // SEARCH BY TITLE AND PUBLISHER
         // TODO create new class to handle io. This is just testing.
-        System.out.println("Search for book by title and publisher! \n First type in the title: ");
+        System.out.println("Search for book by title and publisher!");
+        System.out.println("Start with the title: ");
+        in.next();
         String searchTitle = in.nextLine();
         System.out.println("Then type in the publisher: ");
         String searchPublisher = in.nextLine();

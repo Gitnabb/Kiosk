@@ -96,9 +96,6 @@ public class Registry {
 
     public Literature findLiteratureByTitleAndPublisher(String title, String publisher) {
 
-        title = title.toLowerCase().trim(); // Trim whitespaces in search term.
-        publisher = publisher.toLowerCase().trim();
-
         Literature foundLiterature = null;
         Iterator<Literature> it = this.kioskRegistry.iterator();
 
