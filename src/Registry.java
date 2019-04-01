@@ -17,15 +17,19 @@ public class Registry {
 
     // DECLARE MANUAL TEST BOOK OBJECTS
     private Literature testBook;
-    private Literature testBook2;
+
+    private Literature testNewsPaper;
+
+    private Literature testMagazine;
 
     public Registry() {
         // INSTANTIATE LIST
         this.kioskRegistry = new ArrayList<>();
 
         // CONSTRUCT MANUAL TEST BOOK OBJECTS
-        testBook = new Book("Peer Gynt", "Gyldendal", "H.Ibsen", 1900, 1);
-        testBook2 = new Book("How to train arms", "Kjetils Forlag", "M. Kvendseth", 2019, 1);
+        testBook = new Book("Peer Gynt", "Gyldendal", "Cute literature", "40kr","05.01.1867", "H.Ibsen", 1867, 1);
+        testNewsPaper = new Newspaper("VG", "Schibsted", "Journalism", "20kr", "01.04.19", 312, "Newspaper");
+        testMagazine = new Magazine("Vi Menn", "Egmont Publishing AS", "Journalism", "30kr", "01.04.19", 24, "Magazine", "Tina(18)");
 
         fillRegistry();
 
@@ -37,7 +41,8 @@ public class Registry {
     public void fillRegistry() {
 
         addLiterature(testBook);
-        addLiterature(testBook2);
+        addLiterature(testNewsPaper);
+        addLiterature(testMagazine);
 
     }
 
@@ -89,15 +94,18 @@ public class Registry {
      * @param title
      */
 
-    public Literature findLiteratureByTitle(String title) {
+    public Literature findLiteratureByTitleAndPublisher(String title, String publisher) {
+
         title = title.toLowerCase().trim(); // Trim whitespaces in search term.
+        publisher = publisher.toLowerCase().trim();
+
         Literature foundLiterature = null;
         Iterator<Literature> it = this.kioskRegistry.iterator();
 
         while (it.hasNext() && foundLiterature == null) {
 
             Literature literature = it.next();
-            if (literature.getTitle().toLowerCase().equals(title)) {
+            if (literature.getTitle().equals(title) && literature.getPublisher().equals(publisher)) {
                 foundLiterature = literature;
             }
         }
@@ -156,23 +164,24 @@ public class Registry {
         return this.kioskRegistry.iterator();
     }
 
-    public Boolean titleExist(String title) {
-
-        Boolean exist = false;
-
-        if (findLiteratureByTitle(title) != null) {
-
-            exist = true;
-        } else {
-            exist = false;
-        }
-        return exist;
-    }
 
     public int bookListSize(){
 
         return kioskRegistry.size();
 
+    }
+
+    public Boolean titleExist(String title){
+        boolean exist;
+
+        Iterator<Literature> it = getIterator();
+        if (it.next().equals(title)){
+            exist = true;
+        } else{
+            exist = false;
+        }
+
+        return exist;
     }
 
 }

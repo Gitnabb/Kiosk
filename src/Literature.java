@@ -1,4 +1,4 @@
-public class Literature {
+public abstract class Literature {
 
     private String title; // Title of literature
     private String publisher; // Publisher of literature

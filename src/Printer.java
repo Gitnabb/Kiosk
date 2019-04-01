@@ -1,4 +1,4 @@
-public class Print {
+public class Printer {
 
     //info
     public static void info(String message) {
@@ -17,7 +17,7 @@ public class Print {
         String price = String.valueOf(literature.getPrice());
         String date = literature.getDate();
 
-        Print.info(literature.getClass().getSimpleName());
+        Printer.info(literature.getClass().getSimpleName());
         info("Title:                  " + title);
         info("Publisher:              " + publisher);
         info("Genre:                  " + genre);
@@ -31,15 +31,17 @@ public class Print {
             info("");
         } else if (literature instanceof Magazine) {
             Magazine magazine = (Magazine) literature;
-            String type = magazine.getMagazineType();
+            String type = magazine.getPeriodicalType();
             String releasesPerYear = String.valueOf(magazine.getPublicationAmountPerYear());
+            String coverModel = String.valueOf(magazine.getCoverModel());
             info("Type:                   " + type);
             info("Releases Per Year:      " + releasesPerYear);
+            info("Cover model:            " + coverModel);
             info("");
 
         } else if (literature instanceof BookSeries) {
             BookSeries bookSeries = (BookSeries) literature;
-            int numberOfBooks = bookSeries.getSerieSize();
+            int numberOfBooks = bookSeries.getSeriesSize();
             info("Number of books         " + numberOfBooks);
         }
 

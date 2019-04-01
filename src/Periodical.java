@@ -5,20 +5,20 @@
  */
 
 
-public class Periodical extends Literature {
+public abstract class Periodical extends Literature {
 
     private int publicationAmountPerYear;
     private String periodicalType;
-    private String periodicalGenre;
+    // private String periodicalGenre;
 
     public Periodical(String title, String publisher,
                       String genre, String price,
                       String date, int publicationAmountPerYear,
-                      String periodicalType, String periodicalGenre) {
+                      String periodicalType) {
         super(title, publisher, genre, price, date);
         this.publicationAmountPerYear = publicationAmountPerYear;
         this.periodicalType = periodicalType;
-        this.periodicalGenre = periodicalGenre;
+       // this.periodicalGenre = periodicalGenre;
     }
 
     public int getPublicationAmountPerYear() {
@@ -29,7 +29,4 @@ public class Periodical extends Literature {
         return periodicalType;
     }
 
-    public String getPeriodicalGenre() {
-        return periodicalGenre;
-    }
 }

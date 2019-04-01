@@ -1,4 +1,4 @@
-import org.junit.Before;
+/*import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -10,7 +10,7 @@ public class BookTest {
     @Before
     public void setUp() throws Exception {
 
-        testLiterature = new Literature("testTitle", "testAuthor", 2019, 1);
+        this.testLiterature = new Book("Peer Gynt", "Gyldendal", "Cute literature", "40kr","05.01.1867", "H.Ibsen", 1867, 1);
 
     }
 
@@ -49,4 +49,4 @@ public class BookTest {
     @Test
     public void setEdition() {
     }
-}
+}*/

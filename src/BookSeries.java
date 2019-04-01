@@ -1,39 +1,36 @@
 import java.util.ArrayList;
 
-public class BookSeries  extends  Book {
+public class BookSeries extends Literature {
 
-    private int editionNumber;
-    private int amountOfBooks;
+    private String authors;
+    private ArrayList<Book> bookSeriesList;
 
-    private final ArrayList<Book> bookSeries;
-
-    public BookSeries(String title, String publisher,
-                      String genre, String price,
-                      String date, String author,
-                      int published, int edition,
-                      boolean isPartOfSeries, int editionNumber,
-                      int amountOfBooks) {
-        super(title, publisher, genre, price, date, author, published, edition, isPartOfSeries);
-        this.editionNumber = editionNumber;
-        this.amountOfBooks = amountOfBooks;
-
-        this.bookSeries = new ArrayList<>();
+    public BookSeries(String title, String publisher, String genre, String price, String date, String authors) {
+        super(title, publisher, genre, price, date);
+        this.authors = authors;
+        this.bookSeriesList = new ArrayList<>();
 
     }
 
     public void addBookToBookSeries(Book book){
 
-        this.bookSeries.add(book);
+        this.bookSeriesList.add(book);
 
     }
 
-    public int getEditionNumber() {
-        return editionNumber;
+    public String getAuthors() {
+        return authors;
     }
 
-    public int getAmountOfBooks() {
-        return amountOfBooks;
+    private boolean isBookPartOfSeries(Book book){
+        boolean exists = false;
+
+        // Search in bookSeriesList if the book exists there.
+        return exists;
     }
 
+    public int getSeriesSize(){
 
+        return bookSeriesList.size();
+    }
 }

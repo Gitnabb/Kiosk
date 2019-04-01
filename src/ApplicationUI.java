@@ -1,5 +1,4 @@
 import java.util.InputMismatchException;
-import java.util.Iterator;
 import java.util.Scanner;
 
 public class ApplicationUI {
@@ -9,9 +8,9 @@ public class ApplicationUI {
 
     // MAIN MENU CHOICES
     private final static int ADD_LITERATURE_TO_REGISTRY = 1;
-    private final static int REMOVE_BOOK_FROM_REGISTRY = 2;
-    private final static int SEARCH_FOR_BOOK = 3;
-    private final static int SHOW_ALL_BOOKS = 4;
+    private final static int LIST_ALL_BY_PUBLISHER = 2;
+    private final static int SEARCH_FOR_BOOK_BY_TITLE_AND_PUBLISHER = 3;
+    private final static int SHOW_ALL_LITERATURE = 4;
     private final static int EXIT = 5;
 
     //
@@ -21,6 +20,7 @@ public class ApplicationUI {
 
     private Scanner in = new Scanner(System.in);
     private Registry registry = new Registry();
+    private Printer printer = new Printer();
 
     public ApplicationUI() {
 
@@ -44,15 +44,15 @@ public class ApplicationUI {
                         // addBookMenu();
                         break;
 
-                    case REMOVE_BOOK_FROM_REGISTRY:
+                    case LIST_ALL_BY_PUBLISHER:
                         // TODO: Create method to remove book from menu
-                        doRemoveBookByTitle();
+                        //doRemoveBookByTitle();
                         break;
 
-                    case SEARCH_FOR_BOOK:
-                        doSearchByTitle();
+                    case SEARCH_FOR_BOOK_BY_TITLE_AND_PUBLISHER:
+                        doSearchByTitleAndPublisher();
                         break;
-                    case SHOW_ALL_BOOKS:
+                    case SHOW_ALL_LITERATURE:
                         // Show whole registry
                         doShowAllBooks();
                         break;
@@ -96,7 +96,7 @@ public class ApplicationUI {
     private final String[] menuItems = {
 
             "1: Add literature",
-            "2: Remove a book",
+            "2: List all literature by the publisher",
             "3: Search for books",
             "4: Show all books",
             "5: Exit program"
@@ -125,7 +125,7 @@ public class ApplicationUI {
                     break;
 
                 case ADD_MAGAZINE_TO_REGISTRY:
-                    // addMagazineMenu();
+                    addMagazineMenu();
                     break;
 
             }
@@ -137,47 +137,36 @@ public class ApplicationUI {
     }
 
     /**
-     * Print a welcome message to the user
+     * Printer a welcome message to the user
      */
     public void welcomeMsg() {
 
         System.out.println("***** Welcome to " + SOFTWARE_NAME + " " + VERSION + "!" + " *****" + "\n");
     }
 
-
     /**
-     * Search for a book by it's title. Takes input from user, validates it and
+     * Search for a book by the title and author. Takes input from user, validates it and
      * sends that through to the search function in the registry.
+     *
      */
-    public void doSearchByTitle() {
 
-        // SEARCH BY TITLE
+    public void doSearchByTitleAndPublisher() {
+
+        // SEARCH BY TITLE AND PUBLISHER
         // TODO create new class to handle io. This is just testing.
-        System.out.println("Search for book by title: ");
-        String title = in.nextLine();
-        Literature bookByTitle = registry.findLiteratureByTitle(title);
+        System.out.println("Search for book by title and publisher! \n First type in the title: ");
+        String searchTitle = in.nextLine();
+        System.out.println("Then type in the publisher: ");
+        String searchPublisher = in.nextLine();
 
+        Literature bookByTitleAndPublisher =
+                this.registry.findLiteratureByTitleAndPublisher(searchTitle, searchPublisher);
 
-        if (bookByTitle != null) {
-            System.out.println("Book found in registry -> " + bookByTitle.toString());
+        if (bookByTitleAndPublisher != null) {
+            System.out.println("Book found in registry -> ");
+            this.printer.printLiterature(bookByTitleAndPublisher);
         } else {
             System.out.println("Could not find book");
-        }
-    }
-
-    /**
-     * Search for a book by the author. Takes input from user, validates it and
-     * sends that through to the search function in the registry.
-     * TODO: Maybe use this later.
-     */
-    public void doSearchByAuthor() {
-
-        System.out.println("Search for book by author: ");
-        String author = in.nextLine();
-        Iterator<Literature> itByAuthor = registry.findBookByAuthor(author);
-        while(itByAuthor.hasNext()) {
-            Book book = itByAuthor.hasNext();
-            // doDisplayBook(book);
         }
     }
 
@@ -185,7 +174,7 @@ public class ApplicationUI {
      * Remove a book from the registry
      */
 
-    public void doRemoveBookByTitle() {
+   /* public void doRemoveBookByTitle() {
 
         // TODO: FIGURE OUT WHY I CAN'T USE MAIN SCANNER..
         Scanner removeInput = new Scanner(System.in);
@@ -211,7 +200,7 @@ public class ApplicationUI {
         }
 
     }
-
+*/
     /**
      * Search for literature (sort) by  published year.
      */
@@ -282,20 +271,22 @@ public class ApplicationUI {
             }
         }
 
-        System.out.println("Who wrote the book? ");
+        System.out.println("Who's the author of the book?");
         String bookAuthor = in.nextLine();
 
-        System.out.println("Who is the publisher?");
+        System.out.println("Who's the publisher?");
         String bookPublisher = in.nextLine();
 
-        System.out.println("What genre is it?");
+        System.out.println("What is the genre?");
         String bookGenre = in.nextLine();
 
         System.out.println("What is the price?");
         String bookPrice = in.nextLine();
 
-        System.out.println("What is the price?");
-        String bookPrice = in.nextLine();
+        System.out.println("What is the date of the book?");
+        String bookDate = in.nextLine();
+
+       // ASK ALL THE DETAILS !!!!!!!!!!!!!!!!!!!
 
         // ADDING YEAR PUBLISHED + CHECK IF YEAR IS VALID
         int bookYearPublished;
@@ -322,7 +313,7 @@ public class ApplicationUI {
         System.out.println(bookEdition + " has been added as publish year.");
 
         // CONSTRUCT BOOK, ADD BOOK TO REGISTRY, PRINT CONFIRMATION
-        Literature literature = new Book(bookTitle, bookPublisher, bookGenre, bookPrice,
+        Literature literature = new Book(bookTitle, bookPublisher, bookGenre, bookPrice, bookDate, bookAuthor, bookYearPublished, bookEdition);
         registry.addLiterature(literature);
         System.out.println(literature.getTitle() + " has been added!");
     }
@@ -336,6 +327,12 @@ public class ApplicationUI {
         System.out.println("Who is the publisher?");
         String newsPaperPublisher = in.nextLine();
 
+        System.out.println("What is the price?");
+        String newsPaperPrice = in.nextLine();
+
+        System.out.println("What is the date of the Newspaper? Today probably");
+        String newsPaperDate = in.nextLine();
+
         System.out.println("How many times does it get published a year?");
         int newspaperPublicationAmount = in.nextInt();
 
@@ -344,7 +341,10 @@ public class ApplicationUI {
         String periodicalGenre = "News";
 
       // CONSTRUCT NEWSPAPER, ADD IT TO REGISTRY, PRINT CONFIRMATION
-        Literature newspaper  = new Newspaper(newsPaperTitle, newsPaperPublisher, newspaperPublicationAmount, periodicalType, periodicalGenre);
+        Literature newspaper  = new Newspaper(newsPaperTitle, newsPaperPublisher,
+                periodicalGenre, newsPaperPrice,
+                newsPaperDate, newspaperPublicationAmount,
+                periodicalType);
         registry.addLiterature(newspaper);
         System.out.println(newspaper.getTitle() + " has been added!");
 
@@ -352,9 +352,38 @@ public class ApplicationUI {
 
     public void addMagazineMenu() {
 
-        System.out.println("To add a Magazine, start with entering the newspaper name: ");
+        System.out.println("To add a Magazine, start with entering the magazine name: ");
         in.nextLine();
-        String newspaperName = in.nextLine();
+        String magazineTitle = in.nextLine();
+
+        System.out.println("Who's the publisher of the magazine? ");
+        String magazinePublisher = in.nextLine();
+
+        System.out.println("What kind of magazine is it? (Gossip, sport, hunting?");
+        String magazineGenre = in.nextLine();
+
+        System.out.println("What is the price of the magazine?");
+        String magazinePrice = in.nextLine();
+
+        System.out.println("When did it get released? (The date of the magazine)");
+        String magazineDate = in.nextLine();
+
+        System.out.println("How many times does it get released per year?");
+        int magazinePublicationAmount = in.nextInt();
+
+        String periodicalType = "magazine";
+
+        System.out.println("Whos the cover model?");
+        in.nextLine();
+        String magazineCoverModel = in.nextLine();
+
+        // CONSTRUCT MAGAZINE, ADD IT TO REGISTRY, PRINT CONFIRMATION
+        Literature magazine = new Magazine(magazineTitle, magazinePublisher,
+                magazineGenre, magazinePrice,
+                magazineDate, magazinePublicationAmount,
+                periodicalType, magazineCoverModel);
+        registry.addLiterature(magazine);
+        this.printer.printLiterature(magazine);
     }
 
 }

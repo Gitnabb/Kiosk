@@ -3,17 +3,15 @@ public class Book extends Literature {
     private String author; // Author of a book
     private int published; // The year the book was published
     private int edition; // Which edition it is
-    private boolean isPartOfSeries; // is book part of a book series?
 
     public Book(String title, String publisher,
                 String genre, String price,
                 String date, String author,
-                int published, int edition, boolean isPartOfSeries) {
+                int published, int edition) {
         super(title, publisher, genre, price, date);
         this.author = author;
         this.published = published;
         this.edition = edition;
-        this.isPartOfSeries = isPartOfSeries;
     }
 
     /**
