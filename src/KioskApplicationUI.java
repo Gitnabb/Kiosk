@@ -20,10 +20,10 @@ public class KioskApplicationUI {
      */
     private String[] menuItems = {
             "1. List all literature",
-            "2. Add literature to register",
-            "3. Find literature",
-            "4. Convert book to series",
-            //the last option ( 5 ) is automatically created when called upon.
+            "2. List all literature by publisher",
+            "3. Add literature to register",
+            "4. Find literature by name and publisher",
+            "5. Convert book to series",
     };
 
     /**
@@ -40,16 +40,18 @@ public class KioskApplicationUI {
 
 
     private final static int LIST_ALL_LITERATURE = 1;
-    private final static int ADD_LITERATURE_TO_REGISTER = 2;
-    private final static int FIND_LITERATURE = 3;
-    private final static int CONVERT_BOOK_TO_SERIES = 4;
-    private final static int EXIT = 5;
+    private final static int LIST_ALL_LITERATURE_BY_PUBLISHER = 2;
+    private final static int ADD_LITERATURE_TO_REGISTER = 3;
+    private final static int FIND_LITERATURE_BY_TITLE_AND_PUBLISHER = 4;
+    private final static int CONVERT_BOOK_TO_SERIES = 5;
+    private final static int EXIT = 6;
 
 
     private final static int NEWSPAPER = 1;
     private final static int MAGAZINE = 2;
     private final static int BOOK = 3;
     private final static int BOOK_SERIES = 4;
+    private final static int EXITreg = 5;
 
     /**
      * Creates an instance of the KioskApplicationUI User interface.
@@ -78,30 +80,35 @@ public class KioskApplicationUI {
                         this.application.doListAllLiterature();
                         break;
 
+                    case LIST_ALL_LITERATURE_BY_PUBLISHER:
+                        this.application.doListAllByPublisher();
+                        break;
+
                     case ADD_LITERATURE_TO_REGISTER:
                         int secondMenuSelection = this.showMenu(literatureItems);
                         switch (secondMenuSelection) {
                             case NEWSPAPER:
-                                this.application.doAddLiteratureToRegister();
+                                this.application.doAddLiteratureToRegister(NEWSPAPER);
                                 break;
                             case MAGAZINE:
-                                this.application.doAddLiteratureToRegister();
+                                this.application.doAddLiteratureToRegister(MAGAZINE);
                                 break;
                             case BOOK:
-                                this.application.doAddLiteratureToRegister();
+                                this.application.doAddLiteratureToRegister(BOOK);
                                 break;
                             case BOOK_SERIES:
-                                this.application.doAddLiteratureToRegister();
+                                this.application.doAddLiteratureToRegister(BOOK_SERIES);
                                 break;
-                            case EXIT:
+                            case EXITreg:
                                 System.out.println("Exiting registration of literature");
                                 break;
                         }
                         break;
 
-                    case FIND_LITERATURE:
-                        this.application.doFindLiterature();
+                    case FIND_LITERATURE_BY_TITLE_AND_PUBLISHER:
+                        this.application.doFindLiteratureByTitleAndPublisher();
                         break;
+
 
                     case CONVERT_BOOK_TO_SERIES:
                         this.application.doConvertBookToSeries();

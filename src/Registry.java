@@ -32,12 +32,11 @@ public class Registry {
             this.literatureList.add(literatureTooAdd);
         }
     }
-    public void deleteLiterature(Literature iteratureToRemove) {
-        if (iteratureToRemove != null) {
-            this.literatureList.remove(iteratureToRemove);
-        }
-    }
 
+    /**
+     * Returns an iterator to be used to iterate over the literature in the literature registry.
+     * @return an iterator to be used to iterate over the literature in the literature registry.
+     */
     public Iterator<Literature> getIterator() {
         return this.literatureList.iterator();
     }
@@ -47,9 +46,9 @@ public class Registry {
      * @param title Searches for a book by its title.
      * @return returns the correct object with the following title inside it.
      */
-    public Literature searchForLiteratureTitle(String title, String publisher) {
+    public Literature searchForLiterature(String title, String publisher) {
 
-        Literature literature = null;
+        Literature foundLiterature = null;
         boolean found = false;
 
         Iterator<Literature> it = this.literatureList.iterator();
@@ -58,14 +57,14 @@ public class Registry {
         //we are looking for.
         while (it.hasNext() && !found){
 
-            Literature literatureNext = it.next();
+            Literature tempLiterature = it.next();
 
-            if (literatureNext.getTitle().equals(title) && literatureNext.getPublisher().equals(publisher)) {
-                literature = literatureNext;
+            if (tempLiterature.getTitle().equals(title) && tempLiterature.getPublisher().equals(publisher)) {
+                foundLiterature = tempLiterature;
                 found = true;
             }
         }
-        return literature;
+        return foundLiterature;
     }
 
     /**

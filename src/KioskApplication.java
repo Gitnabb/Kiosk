@@ -19,7 +19,7 @@ public interface KioskApplication {
     /**
      * Register new literature to the register.
      */
-    void doAddLiteratureToRegister();
+    void doAddLiteratureToRegister(int choice);
 
     /**
      * List all literature in the register.
@@ -27,9 +27,14 @@ public interface KioskApplication {
     void doListAllLiterature();
 
     /**
+     * List all literature in the register with specified publisher.
+     */
+    void doListAllByPublisher();
+
+    /**
      * Find a literature in the register based on the title and publisher.
      */
-    void doFindLiterature();
+    void doFindLiteratureByTitleAndPublisher();
 
     /**
      * Converts a single standing book into a series.

@@ -15,7 +15,7 @@ import java.util.List;
 public class BookSeries extends Literature {
 
     //fields to hold the structure of the BookSeries-class
-    private List<Book> bookSeries;
+    private ArrayList<Book> bookSeriesList;
     private String authors;
 
     /**
@@ -27,15 +27,15 @@ public class BookSeries extends Literature {
     public BookSeries(String title, String publisher, String authors) {
         super(title, publisher);
         this.authors = authors;
-        this.bookSeries = new ArrayList<>();
+        this.bookSeriesList = new ArrayList<>();
     }
 
     /**
      * retuns the bookseries-list
      * @return the bookseries-list
      */
-    protected List<Book> getBookSeries() {
-        return this.bookSeries;
+    public ArrayList<Book> getBookSeriesList() {
+        return bookSeriesList;
     }
 
     /**
@@ -51,7 +51,9 @@ public class BookSeries extends Literature {
      * @param bookToAdd adds a book to the book series
      */
     protected void addBookToSeries(Book bookToAdd) {
-        this.bookSeries.add(bookToAdd);
+        if(bookToAdd != null){
+            this.bookSeriesList.add(bookToAdd);
+        }
     }
 
 }
