@@ -15,21 +15,11 @@ public class Registry {
     // DECLARE LIST
     private ArrayList<Literature> kioskRegistry;
 
-    // DECLARE MANUAL TEST BOOK OBJECTS
-    private Literature testBook;
-
-    private Literature testNewsPaper;
-
-    private Literature testMagazine;
-
     public Registry() {
         // INSTANTIATE LIST
         this.kioskRegistry = new ArrayList<>();
 
         // CONSTRUCT MANUAL TEST BOOK OBJECTS
-        testBook = new Book("Peer Gynt", "Gyldendal", "Cute literature", "40kr","05.01.1867", "H.Ibsen", 1867, 1);
-        testNewsPaper = new Newspaper("VG", "Schibsted", "Journalism", "20kr", "01.04.19", 312, "Newspaper");
-        testMagazine = new Magazine("Vi Menn", "Egmont Publishing AS", "Journalism", "30kr", "01.04.19", 24, "Magazine", "Tina(18)");
 
         fillRegistry();
 
@@ -40,9 +30,20 @@ public class Registry {
      */
     public void fillRegistry() {
 
+        Literature testBook;
+        Literature testNewsPaper;
+        Literature testMagazine;
+
+        testBook = new Book("Peer Gynt", "Gyldendal", "Cute literature", "40kr","05.01.1867", "H.Ibsen", 1867, 1);
+        testNewsPaper = new Newspaper("VG", "Schibsted", "Journalism", "20kr", "01.04.19", 312, "Newspaper");
+        testMagazine = new Magazine("Vi Menn", "Egmont Publishing AS", "Journalism", "30kr", "01.04.19", 24, "Magazine", "Tina(18)");
+
         addLiterature(testBook);
         addLiterature(testNewsPaper);
         addLiterature(testMagazine);
+
+        BookSeries bookSeries = new BookSeries("Harry Potter", "Negerforlaget", "Trollmannskap", "1Kr", "01.01.19", "Gammal bitch");
+        bookSeries.addBookToBookSeries(testBook);
 
     }
 
@@ -88,6 +89,20 @@ public class Registry {
         }
     }
 
+    public Iterator<Literature> showLiteratureByPublisher(String publisher){
+        ArrayList<Literature> foundLiteratures = new ArrayList<>();
+        Iterator<Literature> it = this.kioskRegistry.iterator();
+
+        while(it.hasNext()){
+
+            Literature literature = it.next();
+            if(literature.getPublisher().equals(publisher)){
+                foundLiteratures.add(literature);
+            }
+        }
+        return foundLiteratures.iterator();
+    }
+
     /**
      * Search registry by title
      *
@@ -100,9 +115,21 @@ public class Registry {
         Iterator<Literature> it = this.kioskRegistry.iterator();
 
         while (it.hasNext() && foundLiterature == null) {
-
             Literature literature = it.next();
             if (literature.getTitle().equals(title) && literature.getPublisher().equals(publisher)) {
+                foundLiterature = literature;
+            }
+        }
+        return foundLiterature;
+    }
+
+    public Literature findLiteratureByTitle(String title){
+        Literature foundLiterature = null;
+        Iterator<Literature> it = this.kioskRegistry.iterator();
+
+        while (it.hasNext() && foundLiterature == null) {
+            Literature literature = it.next();
+            if (literature.getTitle().equals(title)) {
                 foundLiterature = literature;
             }
         }
@@ -119,7 +146,7 @@ public class Registry {
         ArrayList<Literature> foundLiteratures = new ArrayList<>();
         Iterator<Literature> it = this.kioskRegistry.iterator();
 
-        while (it.hasNext()) {
+        while(it.hasNext()) {
 
             Literature literature = it.next();
             if(literature instanceof Book){

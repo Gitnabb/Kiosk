@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class ApplicationUI {
@@ -11,7 +13,8 @@ public class ApplicationUI {
     private final static int LIST_ALL_BY_PUBLISHER = 2;
     private final static int SEARCH_FOR_BOOK_BY_TITLE_AND_PUBLISHER = 3;
     private final static int SHOW_ALL_LITERATURE = 4;
-    private final static int EXIT = 5;
+    private final static int ADD_BOOK_TO_SERIES = 5;
+    private final static int EXIT = 6;
 
     //
     private final static int ADD_BOOK_TO_REGISTRY = 1;
@@ -46,7 +49,7 @@ public class ApplicationUI {
 
                     case LIST_ALL_BY_PUBLISHER:
                         // TODO: Create method to remove book from menu
-                        //doRemoveBookByTitle();
+                        doshowLiteratureByPublisher();
                         break;
 
                     case SEARCH_FOR_BOOK_BY_TITLE_AND_PUBLISHER:
@@ -56,6 +59,10 @@ public class ApplicationUI {
                         // Show whole registry
                         doShowAllBooks();
                         break;
+
+                    case ADD_BOOK_TO_SERIES:
+                        // Add a book to bookseries
+                        // doAddBookToBookSeries();
 
                     case EXIT:
                         System.out.println("Closing program..\nThank you for using the " + SOFTWARE_NAME + " " + VERSION + " !");
@@ -96,10 +103,11 @@ public class ApplicationUI {
     private final String[] menuItems = {
 
             "1: Add literature",
-            "2: List all literature by the publisher",
+            "2: List all literature by a specific publisher",
             "3: Search for books",
             "4: Show all books",
-            "5: Exit program"
+            "5: Add book to series",
+            "6: Exit program"
     };
 
     private final String[] addLitmenuItems = {
@@ -153,10 +161,9 @@ public class ApplicationUI {
     public void doSearchByTitleAndPublisher() {
 
         // SEARCH BY TITLE AND PUBLISHER
-        // TODO create new class to handle io. This is just testing.
         System.out.println("Search for book by title and publisher!");
         System.out.println("Start with the title: ");
-        in.next();
+        in.nextLine();
         String searchTitle = in.nextLine();
         System.out.println("Then type in the publisher: ");
         String searchPublisher = in.nextLine();
@@ -165,11 +172,41 @@ public class ApplicationUI {
                 this.registry.findLiteratureByTitleAndPublisher(searchTitle, searchPublisher);
 
         if (bookByTitleAndPublisher != null) {
-            System.out.println("Book found in registry -> ");
+            System.out.println("Literature found in registry -> ");
             this.printer.printLiterature(bookByTitleAndPublisher);
         } else {
-            System.out.println("Could not find book");
+            System.out.println("Could not find literature");
         }
+
+    }
+    public void doshowLiteratureByPublisher(){
+
+        System.out.println("Who's literature are you looking for? (Publisher): ");
+        in.nextLine();
+        String searchPublisher = in.nextLine();
+        Iterator<Literature> iterator = registry.showLiteratureByPublisher(searchPublisher);
+
+        if(iterator.hasNext()){
+            while(iterator.hasNext()){
+
+                Literature foundLiterature = iterator.next();
+                printer.printLiterature(foundLiterature);
+
+            }
+        } else {
+            System.out.println("No literature from that publisher! ");
+        }
+    }
+
+    public void doAddBookToSeries() {
+
+        doShowAllBooks();
+        System.out.println("What would you like to add?");
+        in.nextLine();
+        String bookToAdd = in.nextLine();
+
+        Literature literature = registry.findLiteratureByTitle(bookToAdd);
+
     }
 
     /**

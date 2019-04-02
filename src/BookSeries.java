@@ -3,18 +3,21 @@ import java.util.ArrayList;
 public class BookSeries extends Literature {
 
     private String authors;
-    private ArrayList<Book> bookSeriesList;
+    private String seriesTitle;
+    private ArrayList<Literature> bookSeriesList;
 
     public BookSeries(String title, String publisher, String genre, String price, String date, String authors) {
         super(title, publisher, genre, price, date);
         this.authors = authors;
+        this.seriesTitle = seriesTitle;
         this.bookSeriesList = new ArrayList<>();
 
     }
 
-    public void addBookToBookSeries(Book book){
+    public void addBookToBookSeries(Literature literature){
 
-        this.bookSeriesList.add(book);
+        this.bookSeriesList.add(literature);
+        System.out.println("A book was added to " + seriesTitle + "!");
 
     }
 
