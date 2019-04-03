@@ -63,7 +63,6 @@ public class KioskApplicationImpl implements KioskApplication {
             System.out.println("Listing all current literature: \n");
             Iterator<Literature> it = this.literatureRegister.getIterator();
             while (it.hasNext()) {
-
                 Literature literature = it.next();
                 displayLiterature(literature);
                 System.out.println();
@@ -139,7 +138,7 @@ public class KioskApplicationImpl implements KioskApplication {
                 realBookSeries.addBookToSeries(tempBook);
 
                 this.literatureRegister.registerLiterature(realBookSeries);
-                System.out.println("The series " + realBookSeries + " was added to the registry.");
+                System.out.println("The series '" + realBookSeries.getTitle() + "' was added to the registry.");
             }
 
         }
@@ -239,7 +238,7 @@ public class KioskApplicationImpl implements KioskApplication {
                 periodicalType, periodicalGenre, coverModel);
         this.literatureRegister.registerLiterature(magazine);
 
-        System.out.println("the Literature [ " + magazine.getTitle() + " ] from " + magazine.getPublisher()
+        System.out.println("the Literature '" + magazine.getTitle() + "' from " + magazine.getPublisher()
                 + " was added to the registry.");
     }
 
@@ -276,7 +275,7 @@ public class KioskApplicationImpl implements KioskApplication {
                 periodicalType, periodicalGenre, brainTeaser);
         this.literatureRegister.registerLiterature(newspaper);
 
-        System.out.println("the Literature [ " + newspaper.getTitle() + " ] from " + newspaper.getPublisher()
+        System.out.println("the Literature '" + newspaper.getTitle() + "' from " + newspaper.getPublisher()
                 + " was added to the registry.");
 
     }
@@ -309,7 +308,7 @@ public class KioskApplicationImpl implements KioskApplication {
         Literature book = new Book(title, publisher, author, published, editionNumber);
         this.literatureRegister.registerLiterature(book);
 
-        System.out.println("the Literature [ " + book.getTitle() + " ] from " + book.getPublisher()
+        System.out.println("the Literature '" + book.getTitle() + "' from " + book.getPublisher()
                 + " was added to the registry.");
 
     }
@@ -336,7 +335,7 @@ public class KioskApplicationImpl implements KioskApplication {
         Literature bookSeri = new BookSeries(title, publisher, authors);
         this.literatureRegister.registerLiterature(bookSeri);
 
-        System.out.println("the Literature [" + bookSeri.getTitle() + "] from " + bookSeri.getPublisher()
+        System.out.println("the Literature '" + bookSeri.getTitle() + "' from " + bookSeri.getPublisher()
                     + " was added to the registry.");
     }
 

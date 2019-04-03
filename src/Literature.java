@@ -45,11 +45,11 @@ public abstract class Literature {
      */
     protected void setTitle(String title) {
         if(title == null) {
-            this.title = "INVALID VALUE";
+            throw new IllegalArgumentException("Title was null.");
         }
         else{
-            if(title.length() == 0) {
-                this.title = "INVALID VALUE";
+            if(title.trim().length() == 0) {
+                throw new IllegalArgumentException("Title was empty.");
             }
             else {
                 this.title = title;
