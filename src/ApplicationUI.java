@@ -57,7 +57,7 @@ public class ApplicationUI {
                         break;
                     case SHOW_ALL_LITERATURE:
                         // Show whole registry
-                        doShowAllBooks();
+                        registry.showLiterature();
                         break;
 
                     case ADD_BOOK_TO_SERIES:
