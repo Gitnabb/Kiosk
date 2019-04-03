@@ -87,7 +87,9 @@ public class Registry {
 
             System.out.println("- " + kioskRegistry.get(i).getTitle());
         }
+
     }
+
 
     public Iterator<Literature> showLiteratureByPublisher(String publisher){
         ArrayList<Literature> foundLiteratures = new ArrayList<>();
@@ -177,6 +179,12 @@ public class Registry {
             }
         }
         return foundLiterature;
+    }
+    // CONVERT BOOK TO SERIES? (KRAVSPEC)
+    public void convertBookToSeries(){
+
+
+
     }
 
     /**

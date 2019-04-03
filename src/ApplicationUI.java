@@ -62,7 +62,8 @@ public class ApplicationUI {
 
                     case ADD_BOOK_TO_SERIES:
                         // Add a book to bookseries
-                        // doAddBookToBookSeries();
+                        doAddBookToSeries();
+                        break;
 
                     case EXIT:
                         System.out.println("Closing program..\nThank you for using the " + SOFTWARE_NAME + " " + VERSION + " !");
@@ -200,12 +201,48 @@ public class ApplicationUI {
 
     public void doAddBookToSeries() {
 
-        doShowAllBooks();
-        System.out.println("What would you like to add?");
+        System.out.println("Make a book a book series.");
+
+        doShowAllBooks(); // SHOWS ALL LITERATURE ATM
+        System.out.println("Which book would you like to make a series?");
         in.nextLine();
         String bookToAdd = in.nextLine();
 
         Literature literature = registry.findLiteratureByTitle(bookToAdd);
+        if (literature instanceof Book) {
+            Book book = (Book) literature;
+
+            System.out.println("Your book is here: ");
+            printer.printLiterature(literature);
+
+            System.out.println("What is the name of the book series?");
+            String bookSeriesTitle = in.nextLine();
+
+            System.out.println("Who's the publisher?");
+            String bookSeriesPublisher = in.nextLine();
+
+            System.out.println("What genre is it?");
+            String bookSeriesGenre = in.nextLine();
+
+            System.out.println("What is the price?");
+            String bookSeriesPrice = in.nextLine();
+
+            System.out.println("What is the exact date of the book release?");
+            String bookSeriesDate = in.nextLine();
+
+            System.out.println("Are there multiple authors? If there's just one, type that author again.");
+            String bookSeriesAuthors = in.nextLine();
+
+            BookSeries bookSeries = new BookSeries(bookSeriesTitle, bookSeriesPublisher,
+                    bookSeriesGenre, bookSeriesPrice,
+                    bookSeriesDate, bookSeriesAuthors);
+
+            bookSeries.addBookToBookSeries(book);
+
+
+        } else {
+            System.out.println("Could not find book");
+        }
 
     }
 
@@ -274,9 +311,18 @@ public class ApplicationUI {
 
     public void doShowAllBooks() {
         if (registry.bookListSize() > 0) {
-            System.out.println("Current literature in registry");
-            registry.showLiterature();
-            System.out.println(" ");
+            System.out.println("Current books in registry: ");
+
+            Iterator<Literature> litIterator = this.registry.getIterator();
+            while (litIterator.hasNext()){
+                Literature literature = litIterator.next();
+                if(literature instanceof Book){
+                    Book book = (Book) literature;
+                    printer.printLiterature(book);
+                    System.out.println(" ");
+                }
+            }
+
         } else {
             System.out.println("There is no literature in the registry!");
         }
