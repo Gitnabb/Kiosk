@@ -66,11 +66,11 @@ public abstract class Literature {
      */
     protected void setPublisher(String publisher) {
         if(publisher == null) {
-            this.publisher = "INVALID VALUE";
+            throw new IllegalArgumentException("Publisher was null.");
         }
         else{
             if(publisher.length() == 0) {
-                this.publisher = "INVALID VALUE";
+                throw new IllegalArgumentException("Publisher was empty.");
             }
             else {
                 this.publisher = publisher;

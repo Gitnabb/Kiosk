@@ -1,5 +1,7 @@
+import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.Scanner;
+
 /**
  * Represents the KioskApplication. The class is a delegate for the main
  * application and the menu-system. Any functions triggered by a menu selection
@@ -7,7 +9,8 @@ import java.util.Scanner;
  * KioskApplication interface).
  *
  * @author <Andreas Øie>
- * @version 1.0
+ * @version 1.01
+ *
  */
 public class KioskApplicationImpl implements KioskApplication {
 
@@ -140,7 +143,6 @@ public class KioskApplicationImpl implements KioskApplication {
                 this.literatureRegister.registerLiterature(realBookSeries);
                 System.out.println("The series '" + realBookSeries.getTitle() + "' was added to the registry.");
             }
-
         }
         else {
             System.out.println("No books found .. ");
@@ -225,10 +227,19 @@ public class KioskApplicationImpl implements KioskApplication {
         String publisher = scanner3.nextLine();
 
         System.out.println("Publication amount: ");
-        int publicationAmount = scanner3.nextInt();
-        scanner3.nextLine();
-
-        System.out.println("Periodical genre: (such as: Sports, News ... ");
+        int publicationAmount = 0;
+        boolean checker = true;
+        while(checker){
+            try {
+                publicationAmount = scanner3.nextInt();
+                checker = false;
+            }
+            catch (InputMismatchException ime){
+                System.out.println("Not a valid number!");
+            }
+            scanner3.nextLine();
+        }
+        System.out.println("Periodical genre: (such as: Sports, News ... )");
         String periodicalGenre = scanner3.nextLine();
 
         System.out.println("Front page model:  ");
@@ -262,10 +273,20 @@ public class KioskApplicationImpl implements KioskApplication {
         String publisher = scanner3.nextLine();
 
         System.out.println("Publication amount: ");
-        int publicationAmount = scanner3.nextInt();
-        scanner3.nextLine();
+        int publicationAmount = 0;
+        boolean checker = true;
+        while(checker){
+            try {
+                publicationAmount = scanner3.nextInt();
+                checker = false;
+            }
+            catch (InputMismatchException ime){
+                System.out.println("Not a valid number!");
+            }
+            scanner3.nextLine();
+        }
 
-        System.out.println("Periodical genre: (such as: Sports, News ... ");
+        System.out.println("Periodical genre: (such as: Sports, News ... )");
         String periodicalGenre = scanner3.nextLine();
 
         System.out.println("Brain Teaser: (such as: Sudoku, Riddle, Cross-word-puzzle ...) ");
@@ -300,17 +321,38 @@ public class KioskApplicationImpl implements KioskApplication {
         String author = scanner3.nextLine();
 
         System.out.println("Year published: ");
-        int published = scanner3.nextInt();
+        int published = 0;
+        boolean checker = true;
+        while(checker){
+            try {
+                published = scanner3.nextInt();
+                checker = false;
+            }
+            catch (InputMismatchException ime){
+                System.out.println("Not a valid number!");
+            }
+            scanner3.nextLine();
+        }
 
         System.out.println("Edition number: ");
-        int editionNumber = scanner3.nextInt();
+        int editionNumber = 0;
+        boolean check = true;
+        while(check) {
+            try {
+                editionNumber = scanner3.nextInt();
+                check = false;
+            }
+            catch (InputMismatchException ime) {
+                System.out.println("Not a valid number!");
+            }
+            scanner3.nextLine();
+        }
 
         Literature book = new Book(title, publisher, author, published, editionNumber);
         this.literatureRegister.registerLiterature(book);
 
         System.out.println("the Literature '" + book.getTitle() + "' from " + book.getPublisher()
                 + " was added to the registry.");
-
     }
 
     /**
@@ -363,5 +405,4 @@ public class KioskApplicationImpl implements KioskApplication {
             }
         }
     }
-
 }

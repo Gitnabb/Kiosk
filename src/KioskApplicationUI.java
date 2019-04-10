@@ -122,8 +122,7 @@ public class KioskApplicationUI {
                     default:
                 }
             }
-            catch (InputMismatchException ime)
-            {
+            catch (InputMismatchException ime) {
                 System.out.println("\nERROR: Please provide a number between 1 and " + this.menuItems.length + "..\n");
             }
         }
