@@ -71,7 +71,11 @@ public class ApplicationUI {
 
                 }
             } catch (InputMismatchException ime) {
-                System.err.println("\nERROR: Please provide a number between 1 and " + (this.menuItems.length + 1) + "..\n");
+                System.err.println("\nERROR: Please provide a number between 1 and " + (this.menuItems.length + 1) + "..");
+                System.err.println("Try again: ");
+
+                // CLEAR SCANNER BUFFER...
+                in.nextLine();
             }
         }
     }
@@ -379,7 +383,7 @@ public class ApplicationUI {
             System.out.println("When did it get published? (Year)");
             while (!in.hasNextInt()) {
                 System.out.println("Thats not a year, try again");
-                in.next(); // Redo input
+                in.next(); // CLEAR SCANNER BUFFER...
             }
             bookYearPublished = in.nextInt();
         } while (!(bookYearPublished >= 0)); // While value is bigger than 0, exit while loop.
@@ -406,8 +410,8 @@ public class ApplicationUI {
     public void addNewspaperMenu() {
 
         System.out.println("To add a newspaper, start with the title: ");
-        String newsPaperTitle = in.nextLine();
         in.nextLine();
+        String newsPaperTitle = in.nextLine();
 
         System.out.println("Who is the publisher?");
         String newsPaperPublisher = in.nextLine();
@@ -418,8 +422,21 @@ public class ApplicationUI {
         System.out.println("What is the date of the Newspaper? Today probably");
         String newsPaperDate = in.nextLine();
 
-        System.out.println("How many times does it get published a year?");
-        int newspaperPublicationAmount = in.nextInt();
+
+        int newspaperPublicationAmount = 0;
+        boolean inputCorrect = false;
+        while (!inputCorrect){
+            try{
+                System.out.println("How many times does it get published a year?");
+                newspaperPublicationAmount = in.nextInt();
+                inputCorrect = true;
+            } catch (InputMismatchException ime){
+                System.err.println("Wrong input, please provide a sensible number: ");
+                in.next();
+
+                // DO SOMETHING HERE LOOP IS FUCKED
+            }
+        }
 
         String periodicalType = "Newspaper";
 
@@ -458,7 +475,7 @@ public class ApplicationUI {
 
         String periodicalType = "magazine";
 
-        System.out.println("Whos the cover model?");
+        System.out.println("Who's the cover model?");
         in.nextLine();
         String magazineCoverModel = in.nextLine();
 

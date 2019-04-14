@@ -20,7 +20,6 @@ public class Registry {
         this.kioskRegistry = new ArrayList<>();
 
         // CONSTRUCT MANUAL TEST BOOK OBJECTS
-
         fillRegistry();
 
     }
