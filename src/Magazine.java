@@ -37,6 +37,7 @@ public class Magazine extends Periodical {
         this.coverModel = coverModel;
     }
 
+
     /**
      * returns the cover-model for the magazine
      * @return the cover-model for the magazine

@@ -10,7 +10,7 @@
 <?import javafx.scene.control.Label?>
 
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1220.0" prefWidth="1574.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
    <top>
       <VBox BorderPane.alignment="CENTER">
          <children>
@@ -35,12 +35,12 @@
             </MenuBar>
             <HBox>
                <children>
-                  <Button mnemonicParsing="false" onAction="#print" text="Fill registry">
+                  <Button mnemonicParsing="false" onAction="#fillRegistry" text="Fill registry">
                      <HBox.margin>
                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" text="Show litterature">
+                  <Button mnemonicParsing="false" onAction="#showRegistry" text="Show litterature">
                      <HBox.margin>
                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                      </HBox.margin>
@@ -54,10 +54,10 @@
       </VBox>
    </top>
    <center>
-      <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tableView" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="title" prefWidth="427.0" text="Title" />
-          <TableColumn fx:id="publisher" prefWidth="490.0" text="Publisher" />
+          <TableColumn fx:id="titleColumn" prefWidth="139.0" text="Title" />
+          <TableColumn fx:id="publisherColumn" prefWidth="157.0" text="Publisher" />
         </columns>
       </TableView>
    </center>
