@@ -12,7 +12,7 @@ import java.util.Scanner;
  * @version 1.01
  *
  */
-public class KioskApplicationImpl implements KioskApplication {
+public class KioskApplicationImpl {
 
     private Registry literatureRegister;
 
@@ -20,7 +20,6 @@ public class KioskApplicationImpl implements KioskApplication {
      * initializing the literature registry, and
      * fill registry with some example properties.
      */
-    @Override
     public void init() {
         this.literatureRegister = new Registry();
         this.fillRegistersWithDataForTesting();
@@ -36,7 +35,6 @@ public class KioskApplicationImpl implements KioskApplication {
      * Remember to also handle invalid input from the
      * user!!
      */
-    @Override
     public void doAddLiteratureToRegister(int choice) {
 
         // TODO: complete doAddBookToRegistry, doAddMagazineToRegistry, doAddBookSeriesToRegistry
@@ -57,7 +55,6 @@ public class KioskApplicationImpl implements KioskApplication {
      * In this method the info you'll receive info about
      * every registered literature in the registry.
      */
-    @Override
     public void doListAllLiterature() {
 
         if (0 == this.literatureRegister.getNumberOfLiterature()) {
@@ -79,7 +76,6 @@ public class KioskApplicationImpl implements KioskApplication {
      * between four different types, then asked to fill in the
      * required info such as; title, publisher and so on.
      */
-    @Override
     public void doFindLiteratureByTitleAndPublisher() {
         Scanner reader = new Scanner(System.in);
 
@@ -110,7 +106,6 @@ public class KioskApplicationImpl implements KioskApplication {
      * then uses it to locate the book with the given values
      * then adds it to the bookSeries
      */
-    @Override
     public void doConvertBookToSeries(){
         Scanner reader = new Scanner(System.in);
         System.out.println("Find your book");
@@ -381,7 +376,6 @@ public class KioskApplicationImpl implements KioskApplication {
                     + " was added to the registry.");
     }
 
-    @Override
     public void doListAllByPublisher() {
 
         if (0 == this.literatureRegister.getNumberOfLiterature()) {
