@@ -20,7 +20,7 @@ public class Magazine extends Periodical {
 
 
     /**
-     * Constructs the Magazine with a title, publisher, publication amount,
+     * Constructs a Magazine with a title, publisher, publication amount,
      * periodicla type, periodical genre and a cover model for the front page.
      * @param title The title of the magazine
      * @param publisher The publiser of the magazine
@@ -29,14 +29,13 @@ public class Magazine extends Periodical {
      * @param periodicalGenre the genre of the magazine
      * @param coverModel the front page cover model
      */
-    public Magazine(String title, String publisher,
+    public Magazine(String title,String publisher,
                     int publicationAmount, String periodicalType,
                     String periodicalGenre, String coverModel) {
 
         super(title, publisher, publicationAmount, periodicalType, periodicalGenre);
         this.coverModel = coverModel;
     }
-
 
     /**
      * returns the cover-model for the magazine

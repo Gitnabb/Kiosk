@@ -13,9 +13,8 @@ public class Newspaper extends Periodical {
 
 
     /**
-     * Defining field.
-     * Represents a special feature in the newspaper
-     * the brainteaser might be differ from week to week
+     * Defining field, represents a special feature in the newspaper.
+     * The brainteaser might differ from week to week
      * and is usually one of the following;
      *  - crossword-puzzle
      *  - sudoku
@@ -25,7 +24,8 @@ public class Newspaper extends Periodical {
     private String brainteaser;
 
     /**
-     * Constructs a Newspaper, initialized with the correct set of following parameters
+     * Constructs a Newspaper, initialized with the title, publisher,
+     * publication amount, periodical type, periodical genre & brainteaser.
      * @param title the name of the Newspaper (such as VG, DB ..)
      * @param publisher the publisher of the Newspaper ("forlag" in norwegian)
      * @param publicationAmount the amount of publications per year / month / week

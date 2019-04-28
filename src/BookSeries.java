@@ -1,7 +1,5 @@
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
+import java.util.InputMismatchException;
 
 /**
  * Represents a Book series.
@@ -19,7 +17,7 @@ public class BookSeries extends Literature {
     private String authors;
 
     /**
-     * Constructs the BookSeries, initialized with title, publisher &  authors.
+     * Constructs a BookSeries, initialized with title, publisher &  authors.
      * @param title The title of the BookSeries
      * @param publisher the publisher of the BookSeries
      * @param authors the authors of the BookSeries
@@ -43,17 +41,23 @@ public class BookSeries extends Literature {
      * @return the authors of the book series
      */
     protected String getAuthors() {
+
         return this.authors;
     }
 
     /**
-     * adds a given book to the bookseries, by its parameter
-     * @param bookToAdd adds a book to the book series
+     * Adds a given book into the the book-series-list
+     * @param bookToAdd The book to add
      */
     protected void addBookToSeries(Book bookToAdd) {
-        if(bookToAdd != null){
+
+        if (bookToAdd == null) {
+            throw new InputMismatchException("null in book to add");
+        }
+        else {
             this.bookSeriesList.add(bookToAdd);
         }
+
     }
 
 }

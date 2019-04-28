@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Iterator;
 
 /**
@@ -19,7 +20,6 @@ public class Registry {
      * Constructs the list available to store the different literature
      */
     public Registry() {
-
         this.literatureList = new ArrayList<>();
     }
 
@@ -28,7 +28,11 @@ public class Registry {
      * @param literatureTooAdd Registers a literature
      */
     public void registerLiterature(Literature literatureTooAdd) {
-        if (literatureTooAdd != null) {
+
+        if (literatureTooAdd == null) {
+            throw new InputMismatchException("Literature to add is null.");
+        }
+        else {
             this.literatureList.add(literatureTooAdd);
         }
     }

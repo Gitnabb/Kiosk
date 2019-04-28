@@ -8,21 +8,24 @@
  *  @author <Andreas Øie>
  *  @version 1.0
  *
+ *
  */
-public class Book extends Literature{
+public class Book extends Literature {
 
     private String author; // author of the Book
     private int published; // the year the Book was published
     private int editionNumber; // the edition of the Book
 
     /**
-     * initialize the different fields with given parameters
+     * Initialize a Book object with a title, author,
+     * publishing number and a edition number.
      * @param title title of the Book
      * @param author author of the Book
      * @param published the year the Book was published
      * @param editionNumber the edition of the Book
      */
     public Book(String title, String publisher, String author, int published, int editionNumber) {
+
         super(title, publisher);
         setAuthor(author);
         setPublished(published);
@@ -61,6 +64,7 @@ public class Book extends Literature{
      * @param author the author to be set of the book
      */
     private void setAuthor(String author) {
+
         if(author ==  null){
             this.author = "INVALID VALUE";
         }
@@ -80,13 +84,13 @@ public class Book extends Literature{
      * @param published the year the book was published
      */
     private void setPublished(int published) {
+
         if(published > 0){
             this.published = published;
         }
         else{
             this.published = 0;
         }
-
     }
 
     /**
@@ -94,6 +98,7 @@ public class Book extends Literature{
      * @param editionNumber the editionNumber of the book (1st, 2nd, ..)
      */
     private void setEditionNumber(int editionNumber) {
+
         if(editionNumber >= 0){
             this.editionNumber = editionNumber;
         }

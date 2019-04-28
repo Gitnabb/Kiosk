@@ -13,9 +13,17 @@ import javafx.beans.property.SimpleStringProperty;
 public abstract class Literature {
 
     //holds the name, front-page-phrasing etc, for the specific literature
-    private SimpleStringProperty title, publisher;
-    // holds the publisher of the literature itself ("forlag" in norwegian, sort of media house)
+    private SimpleStringProperty title;
 
+    // holds the publisher of the literature itself ("forlag" in norwegian, sort of media house)
+    private SimpleStringProperty publisher;
+
+    /**
+     * Constructs a object with static type of Literature
+     * with title and publisher
+     * @param title The title of the literature
+     * @param publisher The publisher of the literature
+     */
     public Literature(String title, String publisher) {
         this.title = new SimpleStringProperty(title);
         this.publisher = new SimpleStringProperty(publisher);
@@ -36,5 +44,4 @@ public abstract class Literature {
     public String getPublisher() {
         return this.publisher.get();
     }
-
 }

@@ -11,6 +11,12 @@ import java.util.Scanner;
  * @author <Andreas Øie>
  * @version 1.01
  *
+ * -------------------------------------------------------------
+ * This class is altered, and many functions is unused due to the
+ * integration of an GUI. However, as the GUI-application is
+ * developing, more and more functions will be used, therefore
+ * they're still not removed from the class.
+ * -------------------------------------------------------------
  */
 public class KioskApplicationImpl {
 
@@ -40,7 +46,7 @@ public class KioskApplicationImpl {
         // TODO: complete doAddBookToRegistry, doAddMagazineToRegistry, doAddBookSeriesToRegistry
 
         if (choice == 1) {
-            doAddNewspaperToRegistry(); // FINISHED :)))
+            doAddNewspaperToRegistry();
         } else if (choice == 2) {
             doAddMagazineToRegistry();
         } else if (choice == 3) {
@@ -59,7 +65,8 @@ public class KioskApplicationImpl {
 
         if (0 == this.literatureRegister.getNumberOfLiterature()) {
             System.out.println("There is no literature in the registry.");
-        } else {
+        }
+        else {
             System.out.println("Listing all current literature: \n");
             Iterator<Literature> it = this.literatureRegister.getIterator();
             while (it.hasNext()) {
@@ -77,6 +84,7 @@ public class KioskApplicationImpl {
      * required info such as; title, publisher and so on.
      */
     public void doFindLiteratureByTitleAndPublisher() {
+
         Scanner reader = new Scanner(System.in);
 
         System.out.println("Search by title: ");
@@ -106,7 +114,8 @@ public class KioskApplicationImpl {
      * then uses it to locate the book with the given values
      * then adds it to the bookSeries
      */
-    public void doConvertBookToSeries(){
+    public void doConvertBookToSeries() {
+
         Scanner reader = new Scanner(System.in);
         System.out.println("Find your book");
         System.out.println("Title: ");
@@ -116,7 +125,9 @@ public class KioskApplicationImpl {
         String publisher = reader.nextLine();
 
         Literature literature = this.literatureRegister.searchForLiterature(title, publisher);
-        if(literature instanceof Book) {
+
+        if (literature instanceof Book) {
+
             Book tempBook = (Book) literature;
 
             System.out.println("Here is your book");
@@ -131,7 +142,9 @@ public class KioskApplicationImpl {
             String authors = reader.nextLine();
 
             Literature bookSeries = new BookSeries(seriesTitle, publisher, authors);
-            if(bookSeries instanceof BookSeries) {
+
+            if (bookSeries instanceof BookSeries) {
+
                 BookSeries realBookSeries = (BookSeries) bookSeries;
                 realBookSeries.addBookToSeries(tempBook);
 
@@ -148,6 +161,7 @@ public class KioskApplicationImpl {
      * data for testing purposes.
      */
     private void fillRegistersWithDataForTesting() {
+
         Literature book1 = new Book("Harry-Potter 1","Cappelen damm","J.K. Rowling",2014,1);
         Literature book2 = new Book("Harry-Potter 2","Cappelen damm","J.K. Rowling",2015,2);
         Literature bookSer = new BookSeries("Harry-Potter Collection","Cappelen damm","J.K. Rowling");
@@ -210,6 +224,7 @@ public class KioskApplicationImpl {
      * required upon registration. Title, publisher ... etc.
      */
     private void doAddMagazineToRegistry() {
+
         String periodicalType = "Magazine";
 
         Scanner scanner3 = new Scanner(System.in);
@@ -223,11 +238,11 @@ public class KioskApplicationImpl {
 
         System.out.println("Publication amount: ");
         int publicationAmount = 0;
-        boolean checker = true;
-        while(checker){
+        boolean needToCheck = true;
+        while(needToCheck){
             try {
                 publicationAmount = scanner3.nextInt();
-                checker = false;
+                needToCheck = false;
             }
             catch (InputMismatchException ime){
                 System.out.println("Not a valid number!");
@@ -270,7 +285,9 @@ public class KioskApplicationImpl {
         System.out.println("Publication amount: ");
         int publicationAmount = 0;
         boolean checker = true;
-        while(checker){
+
+        while(checker) {
+
             try {
                 publicationAmount = scanner3.nextInt();
                 checker = false;
@@ -304,8 +321,8 @@ public class KioskApplicationImpl {
     private void doAddBookToRegistry() {
 
         Scanner scanner3 = new Scanner(System.in);
-        System.out.println("The book needs # ");
 
+        System.out.println("The book needs # ");
         System.out.println("Title: ");
         String title = scanner3.nextLine();
 
@@ -317,11 +334,11 @@ public class KioskApplicationImpl {
 
         System.out.println("Year published: ");
         int published = 0;
-        boolean checker = true;
-        while(checker){
+        boolean needToCheck = true;
+        while(needToCheck){
             try {
                 published = scanner3.nextInt();
-                checker = false;
+                needToCheck = false;
             }
             catch (InputMismatchException ime){
                 System.out.println("Not a valid number!");
@@ -331,11 +348,11 @@ public class KioskApplicationImpl {
 
         System.out.println("Edition number: ");
         int editionNumber = 0;
-        boolean check = true;
-        while(check) {
+        boolean tryCheck = true;
+        while(tryCheck) {
             try {
                 editionNumber = scanner3.nextInt();
-                check = false;
+                tryCheck = false;
             }
             catch (InputMismatchException ime) {
                 System.out.println("Not a valid number!");
@@ -382,17 +399,21 @@ public class KioskApplicationImpl {
             System.out.println("There is no literature in the registry.");
         }
         else {
-            Scanner reader = new Scanner(System.in);
-            System.out.println("Search after publisher: ");
 
+            Scanner reader = new Scanner(System.in);
+
+            System.out.println("Search after publisher: ");
             String publisher = reader.nextLine();
 
             System.out.println("Listing literature with following publisher: " + publisher + "\n");
 
             Iterator<Literature> it = this.literatureRegister.getIterator();
+
             while (it.hasNext()) {
+
                 Literature literature = it.next();
-                if(literature.getPublisher().equals(publisher)) {
+
+                if (literature.getPublisher().equals(publisher)) {
                     displayLiterature(literature);
                     System.out.println();
                 }
