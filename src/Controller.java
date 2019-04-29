@@ -10,6 +10,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
  * This class is tailored to be the controller of the application.
  * This class builds on everything created and written in the sample.fxml-file.
  * Sample.fxml is primarily created trough an external source (Scene-builder JavaFX).
+ *
+ *  @author <Andreas Øie>
+ *  @version 1.0
  */
 public class Controller {
 

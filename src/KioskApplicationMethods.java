@@ -18,7 +18,7 @@ import java.util.Scanner;
  * they're still not removed from the class.
  * -------------------------------------------------------------
  */
-public class KioskApplicationImpl {
+public class KioskApplicationMethods {
 
     private Registry literatureRegister;
 
@@ -242,10 +242,17 @@ public class KioskApplicationImpl {
         while(needToCheck){
             try {
                 publicationAmount = scanner3.nextInt();
+                if(publicationAmount < 0) {
+                    throw new NegativeIntegerException("errorvalue: " + publicationAmount);
+                }
                 needToCheck = false;
+
             }
             catch (InputMismatchException ime){
                 System.out.println("Not a valid number!");
+            }
+            catch (NegativeIntegerException ivie) {
+                System.out.println("Can't use a negative number");
             }
             scanner3.nextLine();
         }
@@ -290,10 +297,17 @@ public class KioskApplicationImpl {
 
             try {
                 publicationAmount = scanner3.nextInt();
+                if(publicationAmount < 0) {
+                    throw new NegativeIntegerException("errorvalue: " + publicationAmount);
+                }
                 checker = false;
+
             }
             catch (InputMismatchException ime){
                 System.out.println("Not a valid number!");
+            }
+            catch (NegativeIntegerException ivie) {
+                System.out.println("Can't use a negative number");
             }
             scanner3.nextLine();
         }
@@ -338,10 +352,17 @@ public class KioskApplicationImpl {
         while(needToCheck){
             try {
                 published = scanner3.nextInt();
+                if(published < 0) {
+                    throw new NegativeIntegerException("errorvalue: " + published);
+                }
                 needToCheck = false;
+
             }
             catch (InputMismatchException ime){
                 System.out.println("Not a valid number!");
+            }
+            catch (NegativeIntegerException ivie) {
+                System.out.println("Can't use a negative number");
             }
             scanner3.nextLine();
         }
@@ -352,10 +373,16 @@ public class KioskApplicationImpl {
         while(tryCheck) {
             try {
                 editionNumber = scanner3.nextInt();
+                if(editionNumber < 0) {
+                    throw new NegativeIntegerException("errorvalue: " + editionNumber);
+                }
                 tryCheck = false;
             }
-            catch (InputMismatchException ime) {
+            catch (InputMismatchException ime){
                 System.out.println("Not a valid number!");
+            }
+            catch (NegativeIntegerException ivie) {
+                System.out.println("Can't use a negative number");
             }
             scanner3.nextLine();
         }

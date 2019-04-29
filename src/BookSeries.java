@@ -6,6 +6,7 @@ import java.util.InputMismatchException;
  * This specific class is tailored to keep track of books in series.
  * It holds the information about the series names and date etc.
  * This class is extended by the parent class Book
+ *
  *  @author <Andreas Øie>
  *  @version 1.0
  *

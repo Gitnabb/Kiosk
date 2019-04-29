@@ -1,7 +1,8 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class BookTest {
 
@@ -11,7 +12,7 @@ public class BookTest {
      * @throws Exception we create a exception to control the result of the test
      */
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         this.testBook = new Book("testTitle", "testPublisher","testAuthor",2010,10);
     }
 

@@ -1,14 +1,15 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class LiteratureTest {
 
     /**
      * Test of the getters and setters methods
      */
-    Book book = new Book("Harry-Potter 1","Cappelen damm","J.K. Rowling",2014,1);
+    Literature book = new Book("Harry-Potter 1","Cappelen damm","J.K. Rowling",2014,1);
 
     @Before
     public void setUp() throws Exception {
@@ -54,5 +55,7 @@ public class LiteratureTest {
         String testPublisher = "Cappelen damm";
         assertEquals(testPublisher,book.getPublisher());
     }
+
+
 
 }
