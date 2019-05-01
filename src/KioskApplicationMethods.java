@@ -14,8 +14,9 @@ import java.util.Scanner;
  * -------------------------------------------------------------
  * This class is altered, and many functions is unused due to the
  * integration of an GUI. However, as the GUI-application is
- * developing, more and more functions will be used, therefore
- * they're still not removed from the class.
+ * developing, more and more IDEAS behind these functions
+ * will be used from this class (not the methods themself)
+ * therefore - they're still not removed from the class.
  * -------------------------------------------------------------
  */
 public class KioskApplicationMethods {
